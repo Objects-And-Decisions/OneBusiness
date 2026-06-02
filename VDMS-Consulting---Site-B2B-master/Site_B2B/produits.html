@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Produits</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" class="active" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒&nbsp;<span data-i18n="nav_cart">Panier</span>&nbsp;<span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<main>
+  <section>
+    <h2 data-i18n="nav_products">Produits</h2>
+
+    <!-- BARRE DE FILTRES COMPLÈTE -->
+    <div class="filter-bar">
+      <input type="text" id="recherche" data-i18n="search_placeholder" placeholder="Rechercher un produit..."/>
+      <select id="filtre-fournisseur">
+        <option value="tous" data-i18n="filter_all">Tous les fournisseurs</option>
+        <option value="decathlon">Decathlon</option>
+        <option value="darty">Darty</option>
+        <option value="fnac">Fnac</option>
+        <option value="carrefour">Carrefour</option>
+      </select>
+      <select id="filtre-poids">
+        <option value="0" data-i18n="weight_all">Tous les poids</option>
+        <option value="4">≤ 4 kg</option>
+        <option value="8">≤ 8 kg</option>
+        <option value="16">≤ 16 kg</option>
+      </select>
+      <select id="filtre-prix">
+        <option value="0" data-i18n="price_all">Tous les prix</option>
+        <option value="400">≤ 400 €</option>
+        <option value="800">≤ 800 €</option>
+        <option value="1600">≤ 1 600 €</option>
+      </select>
+    </div>
+
+    <div class="card-container" id="produits-grid">
+
+      <!-- data-poids et data-prix pour les filtres -->
+      <div class="card produit-card" data-fournisseur="fnac" data-poids="2.1" data-prix="749">
+        <img src="Images/pc portable.jpg" alt="PC Portable Pro"/>
+        <div class="card-badge">Fnac</div>
+        <h3>PC Portable Pro 15"</h3>
+        <p>Intel Core i7 · 16 Go RAM · SSD 512 Go · Poids : 2,1 kg</p>
+        <div class="prix">749 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">2,1 kg</span>
+          <span class="badge badge-blue">IT Pro</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('PC Portable Pro 15&quot;',749,'Fnac')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="card produit-card" data-fournisseur="darty" data-poids="8.5" data-prix="899">
+        <img src="Images/télévision.jpg" alt="Écran 4K Pro"/>
+        <div class="card-badge">Darty</div>
+        <h3>Écran 4K 55" Pro</h3>
+        <p>UHD 55" · Salle de réunion · Poids : 8,5 kg</p>
+        <div class="prix">899 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">8,5 kg</span>
+          <span class="badge badge-blue">Présentation</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('Écran 4K 55&quot; Pro',899,'Darty')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="card produit-card" data-fournisseur="decathlon" data-poids="15.2" data-prix="1199">
+        <img src="Images/vélo.jpg" alt="Vélo électrique"/>
+        <div class="card-badge">Decathlon</div>
+        <h3>Vélo électrique urbain</h3>
+        <p>250 W · 70 km autonomie · Mobilité douce · Poids : 15,2 kg</p>
+        <div class="prix">1 199 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">15,2 kg</span>
+          <span class="badge badge-green">Mobilité</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('Vélo électrique urbain',1199,'Decathlon')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="card produit-card" data-fournisseur="carrefour" data-poids="12.0" data-prix="349">
+        <img src="Images/pack bureau.jpg" alt="Pack bureau"/>
+        <div class="card-badge">Carrefour</div>
+        <h3>Pack bureau ergonomique</h3>
+        <p>Bureau réglable + chaise ergonomique + rangement · Poids : 12 kg</p>
+        <div class="prix">349 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">12 kg</span>
+          <span class="badge badge-yellow">Bureau</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('Pack bureau ergonomique',349,'Carrefour')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="card produit-card" data-fournisseur="fnac" data-poids="1.8" data-prix="320">
+        <img src="Images/Switch.png" alt="Switch"/>
+        <div class="card-badge">Fnac</div>
+        <h3>Switch réseau 24 ports</h3>
+        <p>Gigabit managé · 24 ports · Rack 1U · Poids : 1,8 kg</p>
+        <div class="prix">320 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">1,8 kg</span>
+          <span class="badge badge-blue">Réseau</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('Switch réseau 24 ports',320,'Fnac')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="card produit-card" data-fournisseur="darty" data-poids="6.2" data-prix="449">
+        <div class="card-badge">Darty</div>
+         <img src="Images/Imprimente.jpg" alt="Imprimante"/>
+        <h3>Imprimante laser Pro</h3>
+        <p>40 ppm · Recto-verso réseau · Bac 500 feuilles · Poids : 6,2 kg</p>
+        <div class="prix">449 €</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <span class="badge badge-gray">6,2 kg</span>
+          <span class="badge badge-blue">Impression</span>
+        </div>
+        <div class="mt-auto">
+          <button class="btn w-full" onclick="ajouterAuPanier('Imprimante laser Pro',449,'Darty')" data-i18n="add_cart">+ Ajouter au panier</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-box">
+    <p><strong class="green" data-i18n="cart_note">Remises automatiques</strong></p>
+    <p data-i18n="cart_r1">≥ 10 articles : −20 %</p>
+    <p data-i18n="cart_r2">≥ 20 articles : −50 %</p>
+    <a class="btn-outline mt-16" href="panier.html" data-i18n="btn_cart">Voir mon panier</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><a href="contrats.html"><span class="__cf_email__" data-cfemail="25464a4b515744515665534148560b4357">[email&#160;protected]</span></a></div>
+  </div>
+
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

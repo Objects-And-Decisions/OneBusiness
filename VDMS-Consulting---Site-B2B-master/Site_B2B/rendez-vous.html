@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rendez-vous — VDMS Consulting</title>
+  <meta name="description" content="Prenez rendez-vous avec VDMS Consulting : conseil juridique, médical ou gestion de votre réseau social professionnel."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html" class="active">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">
+        🛒 <span data-i18n="nav_cart">Panier</span>
+        <span class="compteur-panier">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span data-i18n="topbar_msg">Plateforme B2B e-commerce — Solutions cloud & centralisation des achats</span>
+    <span class="topbar-tag" data-i18n="topbar_tag">Version bêta 2026</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO RDV -->
+  <div class="rdv-hero">
+    <div class="hero-label">Juridique · Médical · Réseau social</div>
+    <h2>Prise de <em>Rendez-vous</em></h2>
+    <p>Réservez un créneau avec nos experts partenaires : conseil juridique pour vos contrats B2B, suivi médical pour vos équipes, ou accompagnement dans votre stratégie de réseau social professionnel.</p>
+  </div>
+
+  <!-- ANCRES DE NAVIGATION -->
+  <nav class="rdv-anchors" aria-label="Sections">
+    <a href="#juridique" class="active-rdv">⚖️ Juridique</a>
+    <a href="#medical">🏥 Médical</a>
+    <a href="#reseau-social">📱 Réseau Social</a>
+  </nav>
+
+  <!-- ── SECTION 1 : JURIDIQUE ───────────────────────────────── -->
+  <section id="juridique">
+    <h2>Juridique</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        Nos juristes partenaires vous accompagnent sur tous les aspects légaux de votre activité B2B : rédaction et révision de contrats, conformité RGPD, litiges commerciaux et propriété intellectuelle. Chaque consultation est <strong style="color:var(--navy)">confidentielle et adaptée à votre secteur</strong>.
+      </p>
+    </div>
+
+    <!-- Spécialités -->
+    <div class="rdv-spec-grid" style="margin-bottom:28px;">
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">📄</div>
+        <h3>Droit des contrats</h3>
+        <p>Rédaction, révision et négociation de contrats commerciaux, CGV et accords de partenariat.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">🔒</div>
+        <h3>RGPD & Données</h3>
+        <p>Mise en conformité, politique de confidentialité, registre des traitements et DPO externalisé.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">⚖️</div>
+        <h3>Litiges commerciaux</h3>
+        <p>Résolution amiable ou judiciaire de conflits entre partenaires, clients ou fournisseurs.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">💡</div>
+        <h3>Propriété intellectuelle</h3>
+        <p>Protection de marques, brevets, droits d'auteur et secrets commerciaux.</p>
+      </div>
+    </div>
+
+    <!-- Formulaire RDV Juridique -->
+    <div class="section-box" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:20px;">⚖️ Réserver une consultation juridique</h3>
+      <form id="form-juridique" onsubmit="envoyerRdv(event,'juridique')">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-prenom">Prénom</label>
+            <input type="text" id="j-prenom" placeholder="Jean" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-nom">Nom</label>
+            <input type="text" id="j-nom" placeholder="Dupont" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-email">Email professionnel</label>
+            <input type="email" id="j-email" placeholder="jean.dupont@societe.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-tel">Téléphone</label>
+            <input type="tel" id="j-tel" placeholder="+33 6 00 00 00 00"/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-specialite">Domaine juridique</label>
+            <select id="j-specialite">
+              <option value="">-- Choisir un domaine --</option>
+              <option value="contrats">Droit des contrats</option>
+              <option value="rgpd">RGPD & Données personnelles</option>
+              <option value="litiges">Litiges commerciaux</option>
+              <option value="pi">Propriété intellectuelle</option>
+              <option value="social">Droit du travail</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="j-urgence">Niveau d'urgence</label>
+            <select id="j-urgence">
+              <option value="normal">Normal — sous 7 jours</option>
+              <option value="urgent">Urgent — sous 48h</option>
+              <option value="critique">Critique — aujourd'hui</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="j-date">Date souhaitée</label>
+            <input type="date" id="j-date" required/>
+          </div>
+          <div class="form-group">
+            <label for="j-format">Format</label>
+            <select id="j-format">
+              <option value="visio">Visioconférence</option>
+              <option value="tel">Téléphone</option>
+              <option value="cabinet">En cabinet — Paris</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="j-desc">Décrivez votre situation</label>
+          <textarea id="j-desc" rows="3" placeholder="Ex : Révision d'un contrat fournisseur international, désaccord sur une clause de confidentialité..."></textarea>
+        </div>
+        <div id="alert-juridique" class="alert alert-success" style="display:none;">✅ Votre demande de consultation juridique a bien été enregistrée. Un juriste vous contacte sous 24h.</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Réserver la consultation →</button>
+          <span class="muted text-sm">Première consultation offerte</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2 : MÉDICAL ─────────────────────────────────── -->
+  <section id="medical">
+    <h2>Médical</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        La santé de vos collaborateurs est un pilier de la performance de votre entreprise. VDMS Consulting vous connecte à des professionnels de santé partenaires pour la <strong style="color:var(--navy)">médecine du travail, le suivi psychologique et la prévention des risques</strong> en milieu professionnel.
+      </p>
+    </div>
+
+    <!-- Stats santé -->
+    <div class="stat-row" style="margin-bottom:28px;">
+      <div class="stat-card">
+        <span class="stat-val">15+</span>
+        <div class="stat-lbl">Médecins partenaires</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">48h</span>
+        <div class="stat-lbl">Délai moyen de RDV</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">100 %</span>
+        <div class="stat-lbl">Téléconsultation disponible</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">5 ★</span>
+        <div class="stat-lbl">Satisfaction patients</div>
+      </div>
+    </div>
+
+    <!-- Spécialités médicales -->
+    <div class="rdv-spec-grid" style="margin-bottom:28px;">
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">🩺</div>
+        <h3>Médecine du travail</h3>
+        <p>Visites médicales obligatoires, aptitude au poste et suivi des salariés exposés à des risques.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">🧠</div>
+        <h3>Soutien psychologique</h3>
+        <p>Accompagnement individuel ou collectif pour prévenir le burn-out et gérer le stress professionnel.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">🏃</div>
+        <h3>Prévention & bien-être</h3>
+        <p>Ateliers ergonomie, nutrition, activité physique adaptée et bilan de santé en entreprise.</p>
+      </div>
+      <div class="rdv-spec-card">
+        <div class="rdv-spec-icon">💊</div>
+        <h3>Téléconsultation</h3>
+        <p>Consultations médicales à distance pour vos équipes, sans déplacement, en 30 minutes.</p>
+      </div>
+    </div>
+
+    <!-- Formulaire RDV Médical -->
+    <div class="section-box" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:20px;">🏥 Réserver un rendez-vous médical</h3>
+      <form id="form-medical" onsubmit="envoyerRdv(event,'medical')">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="m-prenom">Prénom</label>
+            <input type="text" id="m-prenom" placeholder="Marie" required/>
+          </div>
+          <div class="form-group">
+            <label for="m-nom">Nom</label>
+            <input type="text" id="m-nom" placeholder="Martin" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="m-email">Email</label>
+            <input type="email" id="m-email" placeholder="marie.martin@societe.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="m-tel">Téléphone</label>
+            <input type="tel" id="m-tel" placeholder="+33 6 00 00 00 00" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="m-specialite">Type de consultation</label>
+            <select id="m-specialite">
+              <option value="">-- Choisir --</option>
+              <option value="travail">Médecine du travail</option>
+              <option value="psy">Soutien psychologique</option>
+              <option value="prevention">Prévention & bien-être</option>
+              <option value="teleconsult">Téléconsultation généraliste</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="m-format">Format</label>
+            <select id="m-format">
+              <option value="teleconsult">Téléconsultation (vidéo)</option>
+              <option value="cabinet">En cabinet</option>
+              <option value="entreprise">Sur site entreprise</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="m-date">Date souhaitée</label>
+            <input type="date" id="m-date" required/>
+          </div>
+          <div class="form-group">
+            <label for="m-nb">Nombre de salariés concernés</label>
+            <select id="m-nb">
+              <option value="1">1 personne</option>
+              <option value="2-10">2 à 10 personnes</option>
+              <option value="11-50">11 à 50 personnes</option>
+              <option value="50+">Plus de 50 personnes</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="m-notes">Informations complémentaires</label>
+          <textarea id="m-notes" rows="3" placeholder="Ex : Bilan annuel pour l'équipe commerciale, suivi post-arrêt maladie..."></textarea>
+        </div>
+        <div id="alert-medical" class="alert alert-success" style="display:none;">✅ Votre demande de rendez-vous médical a bien été enregistrée. Un professionnel de santé vous contacte sous 48h.</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Confirmer le rendez-vous →</button>
+          <span class="muted text-sm">Données médicales 100 % confidentielles</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3 : RÉSEAU SOCIAL ──────────────────────────── -->
+  <section id="reseau-social">
+    <h2>Réseau Social</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        Développez votre présence digitale B2B avec l'aide de nos experts en community management. De la stratégie de contenu à la gestion quotidienne de vos pages, nous vous aidons à <strong style="color:var(--navy)">attirer des clients, partenaires et talents</strong> sur les réseaux professionnels.
+      </p>
+    </div>
+
+    <!-- Réseaux couverts -->
+    <div class="rdv-reseau-grid" style="margin-bottom:28px;">
+      <div class="rdv-reseau-card">
+        <div class="rdv-reseau-logo">💼</div>
+        <div>
+          <h3>LinkedIn</h3>
+          <p>Stratégie B2B, personal branding, publications et génération de leads professionnels.</p>
+        </div>
+      </div>
+      <div class="rdv-reseau-card">
+        <div class="rdv-reseau-logo">📸</div>
+        <div>
+          <h3>Instagram</h3>
+          <p>Image de marque, storytelling visuel et campagnes sponsorisées pour attirer des talents.</p>
+        </div>
+      </div>
+      <div class="rdv-reseau-card">
+        <div class="rdv-reseau-logo">🐦</div>
+        <div>
+          <h3>X (Twitter)</h3>
+          <p>Veille sectorielle, thought leadership et engagement communautaire en temps réel.</p>
+        </div>
+      </div>
+      <div class="rdv-reseau-card">
+        <div class="rdv-reseau-logo">📘</div>
+        <div>
+          <h3>Facebook / Meta</h3>
+          <p>Pages entreprise, groupes professionnels et publicités ciblées B2B ou recrutement.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offres -->
+    <h3 style="color:var(--navy);margin-bottom:16px;font-size:1rem;">Nos formules d'accompagnement</h3>
+    <div class="card-container" style="margin-bottom:28px;">
+      <div class="card">
+        <div class="card-badge">Starter</div>
+        <h3>Audit & Stratégie</h3>
+        <p>Analyse de votre présence actuelle, définition de la ligne éditoriale et du calendrier de publication.</p>
+        <div class="mt-auto"><span class="highlight">1 session · 1h</span></div>
+      </div>
+      <div class="card">
+        <div class="card-badge">Essentiel</div>
+        <h3>Gestion mensuelle</h3>
+        <p>8 publications/mois, modération des commentaires, rapport de performance mensuel.</p>
+        <div class="mt-auto"><span class="highlight">Sur abonnement</span></div>
+      </div>
+      <div class="card">
+        <div class="card-badge">Premium</div>
+        <h3>Stratégie complète</h3>
+        <p>Création de contenu, campagnes sponsorisées, influenceurs B2B et reporting hebdomadaire.</p>
+        <div class="mt-auto"><span class="highlight">Sur mesure</span></div>
+      </div>
+    </div>
+
+    <!-- Formulaire RDV Réseau Social -->
+    <div class="section-box" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:20px;">📱 Réserver une session réseau social</h3>
+      <form id="form-reseau" onsubmit="envoyerRdv(event,'reseau')">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="r-prenom">Prénom</label>
+            <input type="text" id="r-prenom" placeholder="Sophie" required/>
+          </div>
+          <div class="form-group">
+            <label for="r-nom">Nom</label>
+            <input type="text" id="r-nom" placeholder="Bernard" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="r-email">Email</label>
+            <input type="email" id="r-email" placeholder="sophie.bernard@societe.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="r-societe">Société</label>
+            <input type="text" id="r-societe" placeholder="Nom de votre entreprise" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="r-formule">Formule souhaitée</label>
+            <select id="r-formule">
+              <option value="">-- Choisir --</option>
+              <option value="audit">Starter — Audit & Stratégie</option>
+              <option value="mensuel">Essentiel — Gestion mensuelle</option>
+              <option value="premium">Premium — Stratégie complète</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="r-reseau">Réseau prioritaire</label>
+            <select id="r-reseau">
+              <option value="linkedin">LinkedIn</option>
+              <option value="instagram">Instagram</option>
+              <option value="twitter">X (Twitter)</option>
+              <option value="facebook">Facebook / Meta</option>
+              <option value="multi">Multi-réseaux</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="r-date">Date souhaitée</label>
+            <input type="date" id="r-date" required/>
+          </div>
+          <div class="form-group">
+            <label for="r-format">Format</label>
+            <select id="r-format">
+              <option value="visio">Visioconférence</option>
+              <option value="tel">Téléphone</option>
+              <option value="presentiel">Présentiel — Paris</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="r-objectif">Objectif principal</label>
+          <textarea id="r-objectif" rows="3" placeholder="Ex : Développer notre image sur LinkedIn, attirer des candidats, promouvoir nos produits B2B..."></textarea>
+        </div>
+        <div id="alert-reseau" class="alert alert-success" style="display:none;">✅ Votre demande de session réseau social a bien été enregistrée. Un expert vous contacte sous 24h.</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Réserver la session →</button>
+          <span class="muted text-sm">Réponse sous 24h ouvrées</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>VDMS Consulting</h3>
+      <p data-i18n="footer_desc">Plateforme B2B e-commerce — cloud, multi-fournisseurs, centralisation des achats professionnels.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="qui-sommes-nous.html#contact">contact@vdms-consulting.fr</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+<script>
+  // Dates minimum = aujourd'hui
+  document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date().toISOString().split('T')[0];
+    ['j-date','m-date','r-date'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.min = today;
+    });
+  });
+
+  // Soumission formulaires
+  function envoyerRdv(e, type) {
+    e.preventDefault();
+    const alert = document.getElementById('alert-' + type);
+    if (alert) {
+      alert.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { alert.style.display = 'none'; }, 5000);
+    }
+  }
+
+  // Highlight ancre active au scroll
+  const anchors = document.querySelectorAll('.rdv-anchors a');
+  const sections = ['juridique', 'medical', 'reseau-social'];
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 120) current = id;
+    });
+    anchors.forEach(a => {
+      a.classList.remove('active-rdv');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active-rdv');
+    });
+  });
+</script>
+</body>
+</html>

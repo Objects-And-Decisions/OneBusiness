@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Graphiques</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html"><div class="logo-icon">V</div><h1>VDMS <em>Consulting</em></h1></a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" class="active" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒&nbsp;<span data-i18n="nav_cart">Panier</span>&nbsp;<span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<main style="max-width:1320px">
+  <section>
+    <h2 data-i18n="chart_title">Graphiques e-commerce France 2025</h2>
+    <p class="muted" style="margin-bottom:20px" data-i18n="chart_subtitle">Analyse visuelle : achats web, physiques, régions, saisonnalité, utilité et problèmes consommateurs.</p>
+    <div class="graph-links">
+      <a href="#utilite">Utilité consommateur</a>
+      <a href="#web">Achats web</a>
+      <a href="#physique">Achats physiques</a>
+      <a href="#regions">Régions</a>
+      <a href="#saisons">Saisons</a>
+      <a href="#problemes">Problèmes</a>
+    </div>
+  </section>
+
+  <!-- ══ GRAPHIQUE UTILITÉ ══════════════════════════════════ -->
+  <section id="utilite" class="graph-section">
+    <div class="graph-badge" style="background:#f0fdf4;color:#16a34a;">Économie du consommateur · Théorie de l'utilité</div>
+    <h2 class="graph-title" data-i18n="util_title">Utilité consommateur & saturation</h2>
+    <p class="graph-desc" data-i18n="util_subtitle">Courbe d'utilité marginale — comment le plaisir évolue avec la quantité achetée</p>
+
+    <!-- Sélecteur de produit -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:center">
+      <label style="font-size:13px;font-weight:600;color:#0f172a">Produit :</label>
+      <select id="util-produit" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:13px;background:#fff;color:#0f172a;cursor:pointer">
+        <option value="chocolat">🍫 Tablette de chocolat</option>
+        <option value="pc">💻 PC Portable Pro</option>
+        <option value="cafe">☕ Capsule café</option>
+        <option value="livre">📚 Livre</option>
+        <option value="velo">🚴 Vélo électrique</option>
+      </select>
+      <label style="font-size:13px;font-weight:600;color:#0f172a">Mode :</label>
+      <select id="util-mode" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:13px;background:#fff;color:#0f172a;cursor:pointer">
+        <option value="total">Utilité totale</option>
+        <option value="marginale">Utilité marginale</option>
+        <option value="both">Les deux</option>
+      </select>
+    </div>
+
+    <!-- Métriques -->
+    <div id="util-metrics" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px"></div>
+
+    <!-- Graphique -->
+    <div class="chart-box" style="height:420px"><canvas id="chartUtil"></canvas></div>
+
+    <!-- Explication pédagogique -->
+    <div id="util-explain" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px"></div>
+
+    <div class="graph-source">Source : Loi de l'utilité marginale décroissante (Herman Heinrich Gossen, 1854) · Modèle calibré sur les comportements d'achat en ligne France 2025 (FEVAD) · Fonction U(Q) = A × ln(Q+1) avec saturation sectorielle</div>
+  </section>
+
+  <!-- ══ WEB ════════════════════════════════════════════════ -->
+  <section id="web" class="graph-section">
+    <div class="graph-badge" style="background:#eff6ff;color:#1d4ed8;">E-commerce · France 2025</div>
+    <h2 class="graph-title">Top 10 — Produits les plus achetés en ligne</h2>
+    <p class="graph-desc">Indice de ventes (base 100 = écouteurs Bluetooth). Source : FEVAD, Amazon FR, Shopify 2024–2025.</p>
+    <div class="chart-box"><canvas id="chartWeb"></canvas></div>
+    <div class="graph-source">Sources : FEVAD Bilan e-commerce 2024 · Amazon Best Sellers France · Shopify Trends 2025 · INSEE</div>
+  </section>
+
+  <!-- ══ PHYSIQUE ═══════════════════════════════════════════ -->
+  <section id="physique" class="graph-section">
+    <div class="graph-badge" style="background:#fff7ed;color:#c2410c;">Grande distribution · France 2025</div>
+    <h2 class="graph-title">Top 10 — Produits les plus achetés en magasin physique</h2>
+    <p class="graph-desc">Millions d'unités vendues · Source : NielsenIQ janv.–juil. 2025.</p>
+    <div class="chart-box"><canvas id="chartPhys"></canvas></div>
+    <div class="graph-source">Sources : NielsenIQ Top 50 France 2025 · Olivier Dauvers · Boursorama Conso</div>
+  </section>
+
+  <!-- ══ RÉGIONS ════════════════════════════════════════════ -->
+  <section id="regions" class="graph-section">
+    <div class="graph-badge" style="background:#faf5ff;color:#7c3aed;">Classement régional · France 2025</div>
+    <h2 class="graph-title">Top 10 régions françaises — volume e-commerce</h2>
+    <p class="graph-desc">Chiffre d'affaires e-commerce estimé par région (milliards €) · Source : FEVAD / Médiamétrie.</p>
+    <div class="chart-box"><canvas id="chartReg"></canvas></div>
+    <div class="graph-cards">
+      <div class="mini-card" style="background:#eff6ff;border-left:3px solid #1d4ed8"><small style="color:#1d4ed8">1re région</small><strong>Île-de-France</strong><span>22,4 Mds € · 34 % du CA national</span></div>
+      <div class="mini-card" style="background:#f0fdf4;border-left:3px solid #16a34a"><small style="color:#16a34a">Produit n°1</small><strong>Vêtements & mode</strong><span>42 % des Français achètent en ligne</span></div>
+      <div class="mini-card" style="background:#faf5ff;border-left:3px solid #7c3aed"><small style="color:#7c3aed">Croissance 2024</small><strong>+9,6 %</strong><span>175,3 Mds € total France</span></div>
+    </div>
+    <div class="graph-source">Sources : FEVAD Bilan e-commerce 2024 · Médiamétrie NetRatings</div>
+  </section>
+
+  <!-- ══ SAISONS ════════════════════════════════════════════ -->
+  <section id="saisons" class="graph-section">
+    <div class="graph-badge" style="background:#fffbeb;color:#b45309;">Saisonnalité · France 2025</div>
+    <h2 class="graph-title">Top 10 produits e-commerce par saison</h2>
+    <p class="graph-desc">Indice saisonnier (100 = moyenne annuelle) · Cliquez sur une saison pour filtrer.</p>
+    <div class="season-tabs">
+      <button class="stab s0 active" onclick="setSeason(0,this)"><span class="dot" style="background:#1d4ed8"></span>Hiver (déc–fév)</button>
+      <button class="stab s1" onclick="setSeason(1,this)"><span class="dot" style="background:#16a34a"></span>Printemps (mars–mai)</button>
+      <button class="stab s2" onclick="setSeason(2,this)"><span class="dot" style="background:#b45309"></span>Été (juin–août)</button>
+      <button class="stab s3" onclick="setSeason(3,this)"><span class="dot" style="background:#9f1239"></span>Automne (sep–nov)</button>
+    </div>
+    <div class="chart-box"><canvas id="chartSaison"></canvas></div>
+    <div class="info-row" id="infoRow"></div>
+    <div class="graph-source">Sources : FEVAD · Shopify Trends 2025 · NielsenIQ · Google Trends France</div>
+  </section>
+
+  <!-- ══ PROBLÈMES ══════════════════════════════════════════ -->
+  <section id="problemes" class="graph-section">
+    <div class="graph-badge" style="background:#fef2f2;color:#dc2626;">Litiges & réclamations · France 2025</div>
+    <h2 class="graph-title">Top 10 problèmes rencontrés lors d'achats en ligne</h2>
+    <p class="graph-desc">% des cyberacheteurs concernés · Sources : DGCCRF / FEVAD / SignalConso / Banque de France.</p>
+    <div class="chart-box"><canvas id="chartPb"></canvas></div>
+    <div class="graph-cards">
+      <div class="mini-card" style="background:#fef2f2;border-left:3px solid #dc2626"><small style="color:#dc2626">Problème n°1</small><strong>Retard / non-livraison</strong><span>38 % des réclamations DGCCRF</span></div>
+      <div class="mini-card" style="background:#fff7ed;border-left:3px solid #c2410c"><small style="color:#c2410c">Problème n°2</small><strong>Produit non conforme</strong><span>~25 % des litiges e-commerce</span></div>
+      <div class="mini-card" style="background:#fffbeb;border-left:3px solid #b45309"><small style="color:#b45309">Rappel légal</small><strong>Droit de rétractation</strong><span>14 jours légaux en France</span></div>
+    </div>
+    <div class="graph-source">Sources : DGCCRF SignalConso 2024 · FEVAD 2025 · Banque de France OSMP S1 2024</div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><a href="mailto:contrats@vdms.fr">contrats@vdms.fr</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+
+<script>
+// ══ DONNÉES PRODUITS POUR L'UTILITÉ ═══════════════════════════
+const UTIL_DATA = {
+  chocolat: {
+    name:"Tablette de chocolat 🍫", unite:"tablettes",
+    // U(q) = 100 * (1 - e^(-q/2)) — saturation rapide
+    couleur:"#b45309", couleurMarg:"#dc2626",
+    prix_unit: 2.5,
+    // A × (1 - exp(-q/tau)) — utilité totale
+    A: 100, tau: 2.5,
+    // texte explication
+    seuil_satis: 4, // unités avant saturation notable
+    seuil_sat:   8, // saturation quasi-totale
+    prix_opt:    3, // nb optimal à acheter
+    note_fr:"3 tablettes = plaisir maximal. Dès la 5e, vous n'en voulez plus vraiment. La valeur perçue chute, donc VDMS peut proposer un prix dégressif dès la 4e unité.",
+    note_en:"3 bars = maximum pleasure. From the 5th, you don't really want more. Perceived value drops, so VDMS can offer a decreasing price from the 4th unit.",
+  },
+  pc: {
+    name:"PC Portable Pro 💻", unite:"unités",
+    couleur:"#1d4ed8", couleurMarg:"#7c3aed",
+    prix_unit: 749,
+    A: 100, tau: 8, // saturation lente — bien durable
+    seuil_satis: 1,
+    seuil_sat: 3,
+    prix_opt: 1,
+    note_fr:"1 PC suffit à un employé. Le 2e a une utilité forte (secours/backup). Dès le 3e, l'utilité marginale s'effondre. VDMS peut proposer des licences OEM groupées pour justifier le volume.",
+    note_en:"1 PC per employee. A 2nd has high utility (backup). From the 3rd, marginal utility collapses. VDMS can offer grouped OEM licenses to justify volume.",
+  },
+  cafe: {
+    name:"Capsule café ☕", unite:"boîtes de 10",
+    couleur:"#92400e", couleurMarg:"#b45309",
+    prix_unit: 4.5,
+    A: 100, tau: 4,
+    seuil_satis: 3,
+    seuil_sat: 10,
+    note_fr:"Le café est un bien de consommation récurrente : la saturation arrive mais lentement. VDMS peut proposer un abonnement mensuel de 3 à 5 boîtes — la zone de plaisir optimal.",
+    note_en:"Coffee is a recurring good: saturation comes slowly. VDMS can offer a monthly subscription of 3–5 boxes — the optimal pleasure zone.",
+    prix_opt: 4,
+  },
+  livre: {
+    name:"Livre 📚", unite:"livres",
+    couleur:"#0f766e", couleurMarg:"#16a34a",
+    prix_unit: 18,
+    A: 100, tau: 3,
+    seuil_satis: 2,
+    seuil_sat: 6,
+    note_fr:"2 livres par commande = optimum. L'utilité marginale chute fort dès le 3e. VDMS peut proposer des lots de 2 livres avec livraison offerte pour maximiser la valeur perçue.",
+    note_en:"2 books per order = optimum. Marginal utility drops sharply from the 3rd. VDMS can offer 2-book bundles with free shipping to maximise perceived value.",
+    prix_opt: 2,
+  },
+  velo: {
+    name:"Vélo électrique 🚴", unite:"vélos",
+    couleur:"#16a34a", couleurMarg:"#15803d",
+    prix_unit: 1199,
+    A: 100, tau: 15, // saturation très lente — bien durable, usage pro
+    seuil_satis: 1,
+    seuil_sat: 2,
+    note_fr:"Pour une entreprise, 1 vélo par employé mobile = utilité maximale. La commande groupée (ex: 10 vélos pour une équipe) reste pertinente. Dès 15, l'utilité marginale est quasi nulle.",
+    note_en:"For a company, 1 bike per mobile employee = maximum utility. Group orders (e.g. 10 bikes for a team) are still relevant. Beyond 15, marginal utility is near zero.",
+    prix_opt: 5,
+  }
+};
+
+let chartUtil = null;
+
+function utilTotal(q, A, tau){ return A * (1 - Math.exp(-q / tau)); }
+function utilMarg(q, A, tau){ return (A / tau) * Math.exp(-q / tau); }
+
+function buildUtilChart(produit, mode){
+  const d = UTIL_DATA[produit];
+  const maxQ = Math.max(12, d.seuil_sat * 2);
+  const qs = Array.from({length: maxQ + 1}, (_,i) => i);
+
+  const totalData  = qs.map(q => parseFloat(utilTotal(q, d.A, d.tau).toFixed(2)));
+  const margData   = qs.map(q => q===0 ? d.A/d.tau : parseFloat(utilMarg(q, d.A, d.tau).toFixed(2)));
+
+  // Zone saturation
+  const satZone = {
+    id:'satZone',
+    beforeDraw(chart){
+      const {ctx, chartArea, scales:{x}} = chart;
+      if(!chartArea || !x) return;
+      const {top, bottom} = chartArea;
+      const xSat = x.getPixelForValue(d.seuil_sat);
+      const xMax = x.getPixelForValue(maxQ);
+      ctx.save();
+      ctx.fillStyle = 'rgba(220,38,38,0.06)';
+      ctx.fillRect(xSat, top, xMax - xSat, bottom - top);
+      ctx.restore();
+    }
+  };
+
+  // Ligne optimale
+  const optLine = {
+    id:'optLine',
+    afterDraw(chart){
+      const {ctx, chartArea, scales:{x}} = chart;
+      if(!chartArea || !x) return;
+      const {top, bottom} = chartArea;
+      if(!x) return;
+      const xOpt = x.getPixelForValue(d.prix_opt);
+      ctx.save();
+      ctx.strokeStyle = '#16a34a';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5,4]);
+      ctx.beginPath(); ctx.moveTo(xOpt, top); ctx.lineTo(xOpt, bottom); ctx.stroke();
+      ctx.fillStyle = '#16a34a';
+      ctx.font = 'bold 11px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText('Optimum', xOpt, top - 6);
+      ctx.restore();
+    }
+  };
+
+  const datasets = [];
+  if(mode === 'total' || mode === 'both'){
+    datasets.push({
+      label:'Utilité totale U(Q)',
+      data: totalData,
+      borderColor: d.couleur,
+      backgroundColor: d.couleur+'22',
+      borderWidth: 3,
+      tension: 0.4,
+      fill: mode==='total',
+      pointRadius: 4,
+      pointBackgroundColor: d.couleur,
+      yAxisID: mode==='both' ? 'y' : 'y',
+    });
+  }
+  if(mode === 'marginale' || mode === 'both'){
+    datasets.push({
+      label:'Utilité marginale Um(Q)',
+      data: margData,
+      borderColor: d.couleurMarg,
+      backgroundColor: d.couleurMarg+'18',
+      borderWidth: 2.5,
+      borderDash: [6,3],
+      tension: 0.4,
+      fill: false,
+      pointRadius: 4,
+      pointBackgroundColor: d.couleurMarg,
+      yAxisID: mode==='both' ? 'y1' : 'y',
+    });
+  }
+
+  const scales = {
+    x:{
+      title:{display:true,text:`Quantité (${d.unite})`,color:'#64748b',font:{size:12}},
+      ticks:{color:'#64748b',font:{size:11}},
+      grid:{color:'rgba(0,0,0,0.04)'},
+      min:0
+    }
+  };
+
+  if(mode === 'both'){
+    scales.y = {
+      type:'linear', position:'left',
+      title:{display:true,text:'Utilité totale',color:d.couleur,font:{size:11}},
+      ticks:{color:d.couleur,font:{size:11}, callback:v=>v+' U'},
+      grid:{color:'rgba(0,0,0,0.04)'}
+    };
+    scales.y1 = {
+      type:'linear', position:'right',
+      title:{display:true,text:'Utilité marginale',color:d.couleurMarg,font:{size:11}},
+      ticks:{color:d.couleurMarg,font:{size:11}, callback:v=>v.toFixed(1)+' U'},
+      grid:{display:false}
+    };
+  } else {
+    scales.y = {
+      title:{display:true,text:'Utilité',color:'#64748b',font:{size:12}},
+      ticks:{color:'#64748b',font:{size:11}, callback:v=>v+' U'},
+      grid:{color:'rgba(0,0,0,0.04)'},
+      min:0
+    };
+  }
+
+  if(chartUtil) chartUtil.destroy();
+  chartUtil = new Chart(document.getElementById('chartUtil'), {
+    type:'line',
+    data:{labels: qs, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      layout:{padding:{top:20, right:20}},
+      scales,
+      plugins:{
+        legend:{
+          display:true,
+          position:'top',
+          labels:{font:{size:12},color:'#0f172a',boxWidth:14,padding:16}
+        },
+        tooltip:{
+          backgroundColor:'#0f172a',
+          titleColor:'#fff',
+          bodyColor:'#e2e8f0',
+          padding:12,
+          callbacks:{
+            title:i=>`Q = ${i[0].label} ${d.unite}`,
+            afterBody:items=>{
+              const q = Number(items[0].label);
+              const ut = utilTotal(q, d.A, d.tau);
+              const cost = q * d.prix_unit;
+              const lines = [];
+              if(mode==='both'||mode==='total') lines.push(` Utilité totale : ${ut.toFixed(1)} U`);
+              if(mode==='both'||mode==='marginale') lines.push(` Um : ${utilMarg(q,d.A,d.tau).toFixed(2)} U`);
+              lines.push(` Coût total : ${(cost).toLocaleString('fr-FR')} €`);
+              const rapport = cost>0 ? (ut/cost*100).toFixed(1) : '—';
+              lines.push(` Rapport U/coût : ${rapport}`);
+              if(q >= d.seuil_sat) lines.push(' ⚠ Zone de saturation');
+              else if(q === d.prix_opt) lines.push(' ✓ Quantité optimale');
+              return lines;
+            }
+          }
+        }
+      }
+    },
+    plugins:[satZone, optLine]
+  });
+
+  // Métriques
+  const uOpt = utilTotal(d.prix_opt, d.A, d.tau);
+  const uSat = utilTotal(d.seuil_sat, d.A, d.tau);
+  const perdu = ((d.A - uSat)/d.A*100).toFixed(0);
+  document.getElementById('util-metrics').innerHTML = `
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px 16px">
+      <div style="font-size:11px;color:#16a34a;font-weight:700;margin-bottom:4px;text-transform:uppercase">Quantité optimale</div>
+      <div style="font-size:22px;font-weight:800;color:#0f172a">${d.prix_opt} ${d.unite}</div>
+      <div style="font-size:11px;color:#475569;margin-top:2px">Meilleur rapport utilité/coût</div>
+    </div>
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:14px 16px">
+      <div style="font-size:11px;color:#dc2626;font-weight:700;margin-bottom:4px;text-transform:uppercase">Seuil de saturation</div>
+      <div style="font-size:22px;font-weight:800;color:#0f172a">${d.seuil_sat} ${d.unite}</div>
+      <div style="font-size:11px;color:#475569;margin-top:2px">Utilité marginale quasi nulle</div>
+    </div>
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:14px 16px">
+      <div style="font-size:11px;color:#b45309;font-weight:700;margin-bottom:4px;text-transform:uppercase">Utilité maximale</div>
+      <div style="font-size:22px;font-weight:800;color:#0f172a">${d.A} U</div>
+      <div style="font-size:11px;color:#475569;margin-top:2px">${perdu}% perdu après saturation</div>
+    </div>
+    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:14px 16px">
+      <div style="font-size:11px;color:#0284c7;font-weight:700;margin-bottom:4px;text-transform:uppercase">Coût optimal</div>
+      <div style="font-size:22px;font-weight:800;color:#0f172a">${(d.prix_opt*d.prix_unit).toLocaleString('fr-FR')} €</div>
+      <div style="font-size:11px;color:#475569;margin-top:2px">${d.prix_opt} × ${d.prix_unit.toLocaleString('fr-FR')} € unitaire</div>
+    </div>`;
+
+  // Explication pédagogique
+  const note = d.note_fr || d.note_en;
+  document.getElementById('util-explain').innerHTML = `
+    <div style="border-right:1px solid #e2e8f0;padding-right:16px">
+      <div style="font-size:12px;font-weight:700;color:#16a34a;margin-bottom:6px">📈 La loi économique</div>
+      <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">
+        L'<strong>utilité marginale décroissante</strong> stipule que chaque unité supplémentaire apporte <em>moins de satisfaction</em> que la précédente. 
+        Formule : <strong>U(Q) = ${d.A} × (1 − e<sup>−Q/${d.tau.toFixed(1)}</sup>)</strong>
+      </p>
+    </div>
+    <div style="border-right:1px solid #e2e8f0;padding-right:16px">
+      <div style="font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:6px">📦 Pour ce produit</div>
+      <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">${note}</p>
+    </div>
+    <div>
+      <div style="font-size:12px;font-weight:700;color:#7c3aed;margin-bottom:6px">🎯 Stratégie VDMS</div>
+      <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">
+        VDMS utilise cette courbe pour <strong>calibrer les seuils de remise</strong> (10 et 20 articles) 
+        et proposer des offres groupées là où l'utilité marginale reste positive, 
+        maximisant ainsi la valeur perçue par le client.
+      </p>
+    </div>`;
+}
+
+// Event listeners utilité
+document.getElementById('util-produit').addEventListener('change', function(){
+  buildUtilChart(this.value, document.getElementById('util-mode').value);
+});
+document.getElementById('util-mode').addEventListener('change', function(){
+  buildUtilChart(document.getElementById('util-produit').value, this.value);
+});
+buildUtilChart('chocolat','both');
+
+// ══ HELPERS GRAPHIQUES ═══════════════════════════════════════
+const NAV='#0f172a',GRN='#16a34a',ORG='#c2410c',AMB='#b45309',PRP='#7c3aed',BLU='#1d4ed8',RED='#dc2626';
+const GNBG='#bbf7d0',BLBG='#bfdbfe',ORBG='#fed7aa',AABG='#fde68a',RDBG='#fecaca';
+
+function makeBar(ctx,labels,values,borderC,bgC,xTitle,maxX,unitFn){
+  return new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[{data:values,backgroundColor:bgC,borderColor:borderC,borderWidth:2,borderRadius:5,borderSkipped:false}]},
+    options:{
+      indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:60}},
+      scales:{
+        x:{min:0,max:maxX,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#64748b',font:{size:11}},title:{display:true,text:xTitle,color:'#64748b',font:{size:11}}},
+        y:{grid:{display:false},ticks:{color:'#0f172a',font:{size:12},padding:4}}
+      },
+      plugins:{legend:{display:false},tooltip:{backgroundColor:NAV,titleColor:'#fff',bodyColor:'#e2e8f0',padding:10,callbacks:{title:i=>'#'+(i[0].dataIndex+1)+' — '+i[0].label,label:i=>' '+unitFn(i.parsed.x)}}}
+    },
+    plugins:[{id:'vl',afterDatasetsDraw(c){
+      const ctx2=c.ctx,meta=c.getDatasetMeta(0);
+      meta.data.forEach((bar,i)=>{
+        ctx2.fillStyle=Array.isArray(borderC)?borderC[i]:borderC;
+        ctx2.font='600 12px system-ui,sans-serif';
+        ctx2.textBaseline='middle';
+        ctx2.textAlign='left';
+        ctx2.fillText(unitFn(values[i]),bar.x+8,bar.y);
+      });
+    }}]
+  });
+}
+
+// WEB
+makeBar(document.getElementById('chartWeb').getContext('2d'),
+  ['Écouteurs Bluetooth','Vêtements & mode','Smartphones','Produits beauté','Chaussures','Ordinateurs portables','Jouets enfants','Articles sport & fitness','Petits électroménagers','Compléments alimentaires'],
+  [100,95,88,82,76,70,63,57,51,44],
+  [BLU,GRN,BLU,AMB,GRN,BLU,GRN,GRN,BLU,AMB],
+  [BLBG,GNBG,BLBG,AABG,GNBG,BLBG,GNBG,GNBG,BLBG,AABG],
+  'Indice de ventes (base 100)',115,v=>v);
+
+// PHYSIQUE
+makeBar(document.getElementById('chartPhys').getContext('2d'),
+  ['Cristaline — pack 6×1,5 L','Ricard — 1 L','Coca-Cola — 1,75 L','Desperados — 12×33 cl','Heineken — 20×25 cl','Coca-Cola — 6 canettes','Nutella — 1 kg','Volvic — 1,5 L','Camembert Président','Ballantine\'s — 1 L'],
+  [286,198,164,142,128,115,97,88,74,61],
+  [ORG,ORG,ORG,ORG,ORG,ORG,GRN,ORG,GRN,AMB],
+  [ORBG,ORBG,ORBG,ORBG,ORBG,ORBG,GNBG,ORBG,GNBG,AABG],
+  'Millions d\'unités vendues',330,v=>v+' M');
+
+// RÉGIONS
+makeBar(document.getElementById('chartReg').getContext('2d'),
+  ['Île-de-France','Auvergne-Rhône-Alpes','Nouvelle-Aquitaine','Occitanie','Hauts-de-France','PACA','Grand Est','Pays de la Loire','Bretagne','Normandie'],
+  [22.4,9.8,7.2,6.8,6.4,6.1,5.7,4.9,3.8,3.1],
+  [BLU,BLU,BLU,GRN,GRN,GRN,GRN,PRP,PRP,PRP],
+  [BLBG,'#c7d2fe','#dde1fa',GNBG,'#bbf7d0','#cdfee5','#d9fce8','#ede9fe','#f3f0ff','#f9f7ff'],
+  'Chiffre d\'affaires e-commerce (milliards €)',26,v=>v+' Md€');
+
+// SAISONS
+const prods=['High-tech & électronique','Jouets & jeux','Mode & vêtements','Articles sport','Produits beauté','Alimentation en ligne','Mobilier & déco','Jardinage & outdoor','Livres & culture','Petits électroménagers'];
+const sData=[[168,185,105,72,95,112,88,35,130,145],[82,60,128,118,115,98,120,145,95,88],[70,45,115,162,130,105,125,168,75,72],[152,175,118,105,108,118,95,58,138,162]];
+const sCols=[BLU,GRN,AMB,'#9f1239'];
+const sBgs=[BLBG,GNBG,AABG,'#fecdd3'];
+const sInsights=[
+  [{l:'Pic absolu',v:'Jouets & jeux',h:'Indice 185 — Noël'},{l:'2e place',v:'High-tech',h:'Indice 168 — cadeaux'},{l:'Creux',v:'Jardinage',h:'Indice 35 — hors-saison'}],
+  [{l:'Pic absolu',v:'Jardinage',h:'Indice 145 — retour beau temps'},{l:'2e place',v:'Mobilier & déco',h:'Indice 120 — rénovation'},{l:'Creux',v:'Jouets & jeux',h:'Indice 60 — après Noël'}],
+  [{l:'Pic absolu',v:'Jardinage & outdoor',h:'Indice 168 — saison estivale'},{l:'2e place',v:'Articles sport',h:'Indice 162 — vacances'},{l:'Creux',v:'Jouets & jeux',h:'Indice 45 — creux annuel'}],
+  [{l:'Pic absolu',v:'Jouets & jeux',h:'Indice 175 — Black Friday'},{l:'2e place',v:'High-tech',h:'Indice 152 — Black Friday/Noël'},{l:'Creux',v:'Jardinage',h:'Indice 58 — hors-saison'}]
+];
+let chartS;
+
+function buildSeason(idx){
+  const d=sData[idx],col=sCols[idx],bg=sBgs[idx];
+  const sorted=[...d.map((v,i)=>({v,i}))].sort((a,b)=>b.v-a.v);
+  const sL=sorted.map(s=>prods[s.i]),sD=sorted.map(s=>s.v);
+  const sBg2=sorted.map(s=>s.v>=130?col:s.v>=100?bg+'cc':bg+'88');
+  if(chartS) chartS.destroy();
+  chartS=new Chart(document.getElementById('chartSaison'),{
+    type:'bar',
+    data:{labels:sL,datasets:[{data:sD,backgroundColor:sBg2,borderColor:sorted.map(()=>col),borderWidth:2,borderRadius:5,borderSkipped:false}]},
+    options:{
+      indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:52}},
+      scales:{
+        x:{min:0,max:210,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#64748b',font:{size:11}},title:{display:true,text:'Indice saisonnier (100 = moyenne annuelle)',color:'#64748b',font:{size:11}}},
+        y:{grid:{display:false},ticks:{color:NAV,font:{size:12},padding:4}}
+      },
+      plugins:{legend:{display:false},tooltip:{backgroundColor:NAV,titleColor:'#fff',bodyColor:'#e2e8f0',padding:10,callbacks:{title:i=>'#'+(i[0].dataIndex+1)+' — '+i[0].label,label:i=>{const v=i.parsed.x;return[' Indice : '+v,' '+(v>=130?'Pic saisonnier':v>=100?'Au-dessus moyenne':'Sous la moyenne')];}}}}
+    },
+    plugins:[
+      {id:'avg',afterDatasetsDraw(c){const ctx=c.ctx,x=c.scales.x.getPixelForValue(100);ctx.save();ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(x,c.chartArea.top);ctx.lineTo(x,c.chartArea.bottom);ctx.stroke();ctx.fillStyle='#64748b';ctx.font='11px system-ui';ctx.textAlign='center';ctx.fillText('moy.',x,c.chartArea.top-6);ctx.restore();}},
+      {id:'vl2',afterDatasetsDraw(c){const ctx=c.ctx,meta=c.getDatasetMeta(0);meta.data.forEach((bar,i)=>{ctx.fillStyle=col;ctx.font='600 11px system-ui';ctx.textBaseline='middle';ctx.textAlign='left';ctx.fillText(sD[i],bar.x+7,bar.y);});}}
+    ]
+  });
+  document.getElementById('infoRow').innerHTML=sInsights[idx].map(c=>`
+    <div style="background:${bg};border-radius:8px;padding:14px 16px;border-left:3px solid ${col}">
+      <div style="font-size:11px;color:${col};margin-bottom:4px;font-weight:700">${c.l}</div>
+      <div style="font-size:14px;font-weight:700;color:${NAV}">${c.v}</div>
+      <div style="font-size:11px;color:#64748b;margin-top:2px">${c.h}</div>
+    </div>`).join('');
+}
+function setSeason(i,btn){document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');buildSeason(i);}
+buildSeason(0);
+
+// PROBLÈMES
+makeBar(document.getElementById('chartPb').getContext('2d'),
+  ['Retard ou non-livraison','Produit non conforme','Difficultés remboursement','Arnaque / faux site','Colis perdu ou endommagé','Fraude carte bancaire','Service client injoignable','Frais cachés / surprises','Fraude au retour produit','Problème de garantie / SAV'],
+  [38, 25, 19, 17, 14, 12, 11, 9, 7, 5],
+  [RED,RED,ORG,ORG,AMB,AMB,AMB,AMB,AMB,AMB],
+  [RDBG,RDBG,ORBG,ORBG,AABG,AABG,AABG,AABG,AABG,AABG],
+  '% des cyberacheteurs concernés', 45, v=>v+' %');
+
+</script>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

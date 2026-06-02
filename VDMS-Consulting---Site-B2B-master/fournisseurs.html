@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Fournisseurs</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html"><div class="logo-icon">V</div><h1>VDMS <em>Consulting</em></h1></a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" class="active" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+            <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒 <span data-i18n="nav_cart">Panier</span> <span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<main>
+  <section>
+    <h2 data-i18n="nav_suppliers">Fournisseurs partenaires</h2>
+    <div class="search-bar">
+      <select id="filtre-fournisseur">
+        <option value="tous" data-i18n="filter_all">Tous les fournisseurs</option>
+        <option value="decathlon">Decathlon</option>
+        <option value="darty">Darty</option>
+        <option value="fnac">Fnac</option>
+        <option value="carrefour">Carrefour</option>
+      </select>
+    </div>
+
+    <div class="card-container">
+      <div class="fournisseur-card produit-card" data-fournisseur="fnac">
+        <div class="fournisseur-logo">💻</div>
+        <div class="card-badge">Informatique & Culture</div>
+        <h3>Fnac</h3>
+        <p>Informatique, téléphonie, solutions IT professionnelles, multimédia et culture. Réseau de 200+ magasins en France.</p>
+        <div class="flex gap-8 mt-16"><a class="btn-outline" href="produits.html">Voir les produits →</a></div>
+      </div>
+
+      <div class="fournisseur-card produit-card" data-fournisseur="darty">
+        <div class="fournisseur-logo">📺</div>
+        <div class="card-badge">Électronique & Électroménager</div>
+        <h3>Darty</h3>
+        <p>Électronique grand public, électroménager, SAV garanti. Leader français de la distribution high-tech.</p>
+        <div class="flex gap-8 mt-16"><a class="btn-outline" href="produits.html">Voir les produits →</a></div>
+      </div>
+
+      <div class="fournisseur-card produit-card" data-fournisseur="decathlon">
+        <div class="fournisseur-logo">🚴</div>
+        <div class="card-badge">Sport & Mobilité</div>
+        <h3>Decathlon</h3>
+        <p>Équipements sport, mobilité douce (vélos électriques), matériel fitness et outdoor pour entreprises.</p>
+        <div class="flex gap-8 mt-16"><a class="btn-outline" href="produits.html">Voir les produits →</a></div>
+      </div>
+
+      <div class="fournisseur-card produit-card" data-fournisseur="carrefour">
+        <div class="fournisseur-logo">🏢</div>
+        <div class="card-badge">Bureau & Quotidien</div>
+        <h3>Carrefour Pro</h3>
+        <p>Fournitures de bureau, mobilier, consommables et produits du quotidien pour PME et grandes entreprises.</p>
+        <div class="flex gap-8 mt-16"><a class="btn-outline" href="produits.html">Voir les produits →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stratégie multi-fournisseurs VDMS</h2>
+    <div class="section-box">
+      <p>VDMS Consulting agit comme <strong class="green">opérateur de centralisation</strong> : il agrège les catalogues de plusieurs fournisseurs, négocie les prix en volume, et livre avec un suivi complet via sa plateforme digitale propriétaire.</p>
+      <p>Résultat pour le client : <strong>un seul interlocuteur</strong>, une seule facture, des prix négociés et une livraison coordonnée — quel que soit le nombre de fournisseurs impliqués.</p>
+      <div class="flex gap-12 mt-16" style="flex-wrap:wrap">
+        <a class="btn" href="produits.html">Composer un panier multi-fournisseurs</a>
+        <a class="btn-outline" href="services.html">Voir les services</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><a href="mailto:contrats@vdms.fr">contrats@vdms.fr</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Services</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html"><div class="logo-icon">V</div><h1>VDMS <em>Consulting</em></h1></a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" class="active" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+            <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒 <span data-i18n="nav_cart">Panier</span> <span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<main>
+  <section>
+    <h2 data-i18n="nav_services">Services</h2>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">💳</div><h3>Paiement sécurisé</h3><p>Paiement immédiat, différé ou fractionné via Stripe, Adyen ou virement SEPA B2B. Conformité DSP2 / 3DS2.</p></div>
+      <div class="service-card"><div class="service-icon">🧾</div><h3>Facturation</h3><p>Génération automatique de factures PDF conformes. Historique, export comptable, compatible PDP 2026.</p></div>
+      <div class="service-card"><div class="service-icon">🔄</div><h3>Abonnement</h3><p>Prélèvements SEPA récurrents, gestion du MRR, portail client dédié et alertes automatiques.</p></div>
+      <div class="service-card"><div class="service-icon">🏆</div><h3>Fidélité & remises</h3><p>Programme de remises progressives B2B selon le volume, l'ancienneté et les contrats cadres.</p></div>
+      <div class="service-card"><div class="service-icon">💰</div><h3>Financement BNPL</h3><p>Paiement en 3 ou 6 fois sans frais via Alma ou Hokodo (paiement à 30/60/90 jours entreprise).</p></div>
+      <div class="service-card"><div class="service-icon">🚚</div><h3>Livraison & logistique</h3><p>Coordination multi-transporteurs, suivi en temps réel, livraison express ou groupée selon le volume.</p></div>
+      <div class="service-card"><div class="service-icon">☁️</div><h3>Cloud public</h3><p>Hébergement scalable paiement à l'usage — AWS, Azure ou GCP selon les besoins du client.</p></div>
+      <div class="service-card"><div class="service-icon">🔒</div><h3>Cybersécurité</h3><p>Audit de sécurité réseau, pare-feu managé, conformité RGPD et surveillance 24/7.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>Monitoring & SLA</h3><p>Supervision en temps réel, alertes, rapports de disponibilité et garantie de niveau de service.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Offres cloud comparées</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Offre</th><th>Description</th><th>Idéal pour</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Cloud Public</strong></td><td>Flexible, scalable, paiement à l'usage</td><td>Startups, pics d'activité</td><td><span class="badge badge-green">Disponible</span></td></tr>
+          <tr><td><strong>Cloud Privé</strong></td><td>Contrôle total, sécurité renforcée, données sensibles</td><td>Grandes entreprises, santé, finance</td><td><span class="badge badge-green">Disponible</span></td></tr>
+          <tr><td><strong>Cloud Hybride</strong></td><td>Équilibre coût / performance / contrôle</td><td>PME en croissance</td><td><span class="badge badge-green">Disponible</span></td></tr>
+          <tr><td><strong>Monitoring</strong></td><td>Supervision disponibilité et performances 24/7</td><td>Toute entreprise</td><td><span class="badge badge-yellow">Bêta</span></td></tr>
+          <tr><td><strong>Cybersécurité</strong></td><td>Protection réseau, pare-feu, audit, RGPD</td><td>Sur mesure</td><td><span class="badge badge-blue">Sur devis</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><a href="mailto:contrats@vdms.fr">contrats@vdms.fr</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

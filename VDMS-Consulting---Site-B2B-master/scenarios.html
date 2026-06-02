@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Scénarios Workflow B2B</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html">Accueil</a>
+      <a href="produits.html">Produits</a>
+      <a href="services.html">Services</a>
+      <a href="commandes.html">Commandes</a>
+      <a href="contrats.html">Contrats</a>
+      <a href="fournisseurs.html">Fournisseurs</a>
+      <a href="graphiques.html">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒&nbsp;Panier&nbsp;<span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="topbar"><div class="topbar-inner"><span></span></div></div>
+
+<main>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <div class="sc-hero">
+    <div class="sc-hero-inner">
+      <span class="sc-hero-tag">Simulation interactive</span>
+      <h2>🗺️ Scénarios Workflow B2B</h2>
+      <p>Explorez les 3 parcours clients VDMS Consulting — de la découverte au suivi analytique.<br>
+         Sélectionnez un scénario puis lancez la simulation pas à pas.</p>
+    </div>
+  </div>
+
+  <!-- ── SÉLECTEUR DE SCÉNARIOS ────────────────────────────── -->
+  <div class="sc-selector" role="tablist" aria-label="Sélection du scénario">
+
+    <button class="sc-card sc-card-s1 active" data-sc="s1" role="tab" aria-selected="true">
+      <span class="sc-card-emoji">✅</span>
+      <div class="sc-card-body">
+        <strong>Scénario 1</strong>
+        <span class="sc-card-titre">Totalement Optimiste</span>
+        <small>Paiement comptant · Contrat signé · Stable</small>
+      </div>
+      <span class="sc-card-steps">6 étapes</span>
+    </button>
+
+    <button class="sc-card sc-card-s2" data-sc="s2" role="tab" aria-selected="false">
+      <span class="sc-card-emoji">🔄</span>
+      <div class="sc-card-body">
+        <strong>Scénario 2</strong>
+        <span class="sc-card-titre">Relativement Optimiste</span>
+        <small>Paiement fractionné · Croissance progressive</small>
+      </div>
+      <span class="sc-card-steps">7 étapes</span>
+    </button>
+
+    <button class="sc-card sc-card-s3" data-sc="s3" role="tab" aria-selected="false">
+      <span class="sc-card-emoji">⚠️</span>
+      <div class="sc-card-body">
+        <strong>Scénario 3</strong>
+        <span class="sc-card-titre">Relativement Pessimiste</span>
+        <small>Surcharge · Risques financiers · Cyber</small>
+      </div>
+      <span class="sc-card-steps">7 étapes</span>
+    </button>
+
+  </div>
+
+  <!-- ── WORKSPACE ─────────────────────────────────────────── -->
+  <div class="sc-workspace">
+
+    <!-- LEFT : stepper + controls -->
+    <div class="sc-left-panel">
+      <div class="sc-panel-header">
+        <h3 id="sc-scenario-label">Scénario 1 — Totalement Optimiste</h3>
+        <p id="sc-scenario-desc" class="sc-desc">Paiement comptant · Contrat signé · Plateforme stable · Croissance maîtrisée</p>
+      </div>
+
+      <div class="sc-stepper" id="sc-stepper" role="list">
+        <!-- Rendu dynamiquement par JS -->
+      </div>
+
+      <!-- Détail de l'étape courante -->
+      <div class="sc-step-detail-box" id="sc-step-detail">
+        <span class="sc-detail-arrow">›</span>
+        <span id="sc-detail-text">Lancez la simulation pour explorer le parcours étape par étape.</span>
+      </div>
+
+      <!-- Contrôles simulation -->
+      <div class="sc-controls">
+        <button class="sc-sim-btn" id="sc-sim-btn" aria-label="Simuler le parcours">
+          <span class="sc-sim-icon">▶</span> Simuler le parcours
+        </button>
+        <button class="sc-reset-btn" id="sc-reset-btn" title="Réinitialiser">↺</button>
+      </div>
+      <div class="sc-progress-wrap">
+        <div class="sc-progress-bar" id="sc-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="sc-progress-label" id="sc-progress-label">Étape 0 / 0</div>
+    </div>
+
+    <!-- RIGHT : panel de données -->
+    <div class="sc-right-panel">
+
+      <!-- Tabs -->
+      <div class="sc-tabs" id="sc-tabs" role="tablist">
+        <!-- Rendu dynamiquement -->
+      </div>
+
+      <!-- Contenu -->
+      <div class="sc-tab-body" id="sc-tab-body">
+        <!-- Rendu dynamiquement -->
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p>Votre partenaire B2B de confiance</p></div>
+    <div class="footer-col"><h4>Navigation</h4>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="graphiques.html">Graphiques</a>
+    </div>
+    <div class="footer-col"><h4>Contact</h4><a href="contrats.html">Nous contacter</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 VDMS Consulting</span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="scenarios-mock.js"></script>
+<script src="navigation.js"></script>
+<script>
+// ============================================================
+// SCÉNARIOS PAGE — Logique interactive
+// ============================================================
+
+(function () {
+  'use strict';
+
+  // ── État ──────────────────────────────────────────────────
+  let currentScId  = 's1';
+  let simInterval  = null;
+  let simStep      = 0;
+  let simRunning   = false;
+  let currentTab   = 'client';
+
+  // ── Éléments DOM ─────────────────────────────────────────
+  const stepperEl   = document.getElementById('sc-stepper');
+  const tabsEl      = document.getElementById('sc-tabs');
+  const tabBodyEl   = document.getElementById('sc-tab-body');
+  const simBtn      = document.getElementById('sc-sim-btn');
+  const resetBtn    = document.getElementById('sc-reset-btn');
+  const detailText  = document.getElementById('sc-detail-text');
+  const progressBar = document.getElementById('sc-progress-bar');
+  const progressLbl = document.getElementById('sc-progress-label');
+  const scLabel     = document.getElementById('sc-scenario-label');
+  const scDesc      = document.getElementById('sc-scenario-desc');
+
+  // ── TAB DEFINITIONS par scénario ─────────────────────────
+  const TAB_DEFS = {
+    s1: [
+      { id: 'client',      label: '👤 Client'    },
+      { id: 'contrat',     label: '📋 Contrat'   },
+      { id: 'commandes',   label: '📦 Commandes' },
+      { id: 'paiement',    label: '💳 Paiement'  },
+      { id: 'analytiques', label: '📊 Analytics' },
+    ],
+    s2: [
+      { id: 'client',      label: '👤 Client'    },
+      { id: 'contrat',     label: '📋 Contrat'   },
+      { id: 'commandes',   label: '📦 Commandes' },
+      { id: 'paiement',    label: '💳 Tranches'  },
+      { id: 'analytiques', label: '📊 Analytics' },
+    ],
+    s3: [
+      { id: 'client',      label: '👤 Client'    },
+      { id: 'contrat',     label: '📋 Contrat'   },
+      { id: 'commandes',   label: '📦 Commandes' },
+      { id: 'paiement',    label: '💳 Paiement'  },
+      { id: 'alertes',     label: '🚨 Alertes'   },
+      { id: 'analytiques', label: '📊 Analytics' },
+    ],
+  };
+
+  // ── STATUS CONFIG ─────────────────────────────────────────
+  const STATUS = {
+    ok:       { icon: '✅', cls: 'step-ok',       label: 'OK' },
+    attente:  { icon: '⏳', cls: 'step-attente',   label: 'En attente' },
+    partiel:  { icon: '🔵', cls: 'step-partiel',   label: 'Partiel' },
+    alerte:   { icon: '⚠️', cls: 'step-alerte',    label: 'Alerte' },
+    danger:   { icon: '🔴', cls: 'step-danger',    label: 'Danger' },
+    critique: { icon: '🚨', cls: 'step-critique',  label: 'Critique' },
+    inactive: { icon: '○',  cls: 'step-inactive',  label: '' },
+  };
+
+  // ── INIT ──────────────────────────────────────────────────
+  function init() {
+    // Sélecteur de scénario
+    document.querySelectorAll('.sc-card').forEach(btn => {
+      btn.addEventListener('click', () => selectScenario(btn.dataset.sc));
+    });
+
+    simBtn.addEventListener('click', toggleSim);
+    resetBtn.addEventListener('click', resetSim);
+
+    selectScenario('s1');
+  }
+
+  // ── SÉLECTION SCÉNARIO ────────────────────────────────────
+  function selectScenario(scId) {
+    resetSim();
+    currentScId = scId;
+    currentTab  = 'client';
+
+    const sc = VDMS_MOCK[scId];
+
+    // Mise à jour des cartes
+    document.querySelectorAll('.sc-card').forEach(c => {
+      const active = c.dataset.sc === scId;
+      c.classList.toggle('active', active);
+      c.setAttribute('aria-selected', active);
+    });
+
+    // Couleur dynamique du panneau gauche
+    const color = sc.meta.couleur;
+    document.querySelectorAll('.sc-step-dot, .sc-progress-bar').forEach(el => {
+      el.style.removeProperty('--step-color');
+    });
+    document.documentElement.style.setProperty('--sc-color', color);
+    document.documentElement.style.setProperty('--sc-bg', sc.meta.bgColor);
+
+    // Labels
+    scLabel.textContent = `${sc.meta.emoji} Scénario ${sc.meta.id.replace('S','')} — ${sc.meta.titre}`;
+    scDesc.textContent  = sc.meta.description;
+
+    // Render
+    renderStepper(sc);
+    renderTabs(scId);
+    renderTabContent(sc, currentTab);
+    updateProgress(0, sc.etapes.length);
+  }
+
+  // ── STEPPER ───────────────────────────────────────────────
+  function renderStepper(sc) {
+    stepperEl.innerHTML = '';
+    sc.etapes.forEach((etape, i) => {
+      const s = STATUS[etape.statut] || STATUS.ok;
+      const item = document.createElement('div');
+      item.className = `sc-step step-inactive`;
+      item.setAttribute('role', 'listitem');
+      item.dataset.idx = i;
+      item.innerHTML = `
+        <div class="sc-step-dot">${s.icon}</div>
+        <div class="sc-step-content">
+          <span class="sc-step-num">Étape ${etape.id}</span>
+          <span class="sc-step-label">${etape.label}</span>
+        </div>
+        <a class="sc-step-link" href="${etape.page}" title="Ouvrir la page">→</a>
+      `;
+      stepperEl.appendChild(item);
+    });
+  }
+
+  // ── TABS ──────────────────────────────────────────────────
+  function renderTabs(scId) {
+    tabsEl.innerHTML = '';
+    TAB_DEFS[scId].forEach(tab => {
+      const btn = document.createElement('button');
+      btn.className = `sc-tab-btn${tab.id === currentTab ? ' active' : ''}`;
+      btn.dataset.tab = tab.id;
+      btn.textContent = tab.label;
+      btn.addEventListener('click', () => {
+        currentTab = tab.id;
+        tabsEl.querySelectorAll('.sc-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab.id));
+        renderTabContent(VDMS_MOCK[currentScId], tab.id);
+      });
+      tabsEl.appendChild(btn);
+    });
+  }
+
+  function activateTab(tabId) {
+    currentTab = tabId;
+    tabsEl.querySelectorAll('.sc-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+    renderTabContent(VDMS_MOCK[currentScId], tabId);
+  }
+
+  // ── TAB CONTENT ───────────────────────────────────────────
+  function renderTabContent(sc, tabId) {
+    let html = '';
+
+    switch (tabId) {
+      case 'client':   html = renderClient(sc.client, sc.meta);   break;
+      case 'contrat':  html = renderContrat(sc.contrat, sc.meta); break;
+      case 'commandes':html = renderCommandes(sc.commandes, sc.meta); break;
+      case 'paiement': html = renderPaiement(sc.paiement, sc.meta); break;
+      case 'alertes':  html = renderAlertes(sc.alertes || [], sc.meta); break;
+      case 'analytiques': html = renderAnalytiques(sc.analytiques, sc.meta); break;
+      default: html = '<p class="sc-empty">Onglet non disponible.</p>';
+    }
+
+    tabBodyEl.innerHTML = html;
+    tabBodyEl.classList.remove('sc-tab-anim');
+    requestAnimationFrame(() => tabBodyEl.classList.add('sc-tab-anim'));
+  }
+
+  function badge(text, color) {
+    return `<span class="sc-badge" style="background:${color}20;color:${color};border-color:${color}40">${text}</span>`;
+  }
+
+  function kv(label, val) {
+    return `<div class="sc-kv"><span class="sc-kv-label">${label}</span><span class="sc-kv-val">${val}</span></div>`;
+  }
+
+  function renderClient(c, meta) {
+    const riskColor = { Faible: '#0F6E56', Modéré: '#854F0B', Élevé: '#993C1D' }[c.scoring.risque] || '#475569';
+    return `
+      <div class="sc-section-title">Fiche client</div>
+      <div class="sc-info-grid">
+        ${kv('ID Client', `<code>${c.id}</code>`)}
+        ${kv('Raison sociale', `<strong>${c.nom}</strong>`)}
+        ${kv('Forme juridique', c.forme)}
+        ${kv('SIRET', `<code>${c.siret}</code>`)}
+        ${kv('Secteur', c.secteur)}
+        ${kv('Effectif', `${c.effectif} collaborateurs`)}
+        ${kv('CA annuel', `<strong>${c.chiffreAffaires}</strong>`)}
+        ${kv('Adresse', c.adresse)}
+      </div>
+      <div class="sc-section-title" style="margin-top:16px">Contact principal</div>
+      <div class="sc-info-grid">
+        ${kv('Nom', `<strong>${c.contact.nom}</strong>`)}
+        ${kv('Poste', c.contact.poste)}
+        ${kv('E-mail', `<a href="mailto:${c.contact.email}">${c.contact.email}</a>`)}
+        ${kv('Téléphone', c.contact.tel)}
+      </div>
+      <div class="sc-scoring-row">
+        ${badge('Note ' + c.scoring.note, meta.couleur)}
+        ${badge('Risque : ' + c.scoring.risque, riskColor)}
+        ${badge('Payeur ' + c.scoring.payeur, '#475569')}
+      </div>`;
+  }
+
+  function renderContrat(c, meta) {
+    const montantFmt = n => n.toLocaleString('fr-FR') + ' €';
+    return `
+      <div class="sc-section-title">Détails du contrat</div>
+      <div class="sc-info-grid">
+        ${kv('Référence', `<code>${c.id}</code>`)}
+        ${kv('Type', c.type)}
+        ${kv('Statut', `<strong style="color:${meta.couleur}">${c.statut}</strong>`)}
+        ${kv('Date signature', c.dateSig)}
+        ${kv('Période', `${c.dateDebut} → ${c.dateFin}`)}
+        ${kv('Renouvellement auto', c.renouvellementAuto ? '✅ Activé' : '❌ Non')}
+        ${kv('Montant HT', montantFmt(c.montantHT))}
+        ${kv('TVA (20 %)', montantFmt(c.tva))}
+        ${kv('Montant TTC', `<strong>${montantFmt(c.montantTTC)}</strong>`)}
+      </div>
+      <div class="sc-section-title" style="margin-top:16px">Clauses spéciales</div>
+      <ul class="sc-clause-list">
+        ${c.clauses.map(cl => `<li>${cl}</li>`).join('')}
+      </ul>`;
+  }
+
+  function renderCommandes(commandes, meta) {
+    return commandes.map(cmd => `
+      <div class="sc-cmd-block">
+        <div class="sc-cmd-header">
+          <span class="sc-cmd-id"><code>${cmd.id}</code></span>
+          <span class="sc-cmd-date">${cmd.date}</span>
+          <span class="sc-cmd-statut" style="color:${meta.couleur}">${cmd.statut}</span>
+        </div>
+        <table class="sc-table">
+          <thead><tr><th>Produit</th><th>Qté</th><th>PU</th><th>Total</th></tr></thead>
+          <tbody>
+            ${cmd.lignes.map(l => `<tr><td>${l.nom}</td><td>${l.qte}</td><td>${l.prixU}</td><td>${l.total}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        <div class="sc-cmd-footer">
+          <span>Sous-total : ${cmd.sousTotal}</span>
+          <span class="sc-remise">Remise volume : ${cmd.remise}</span>
+          <strong>Total HT : ${cmd.totalHT}</strong>
+          <span>📦 Livraison : ${cmd.livraison}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  function renderPaiement(p, meta) {
+    if (p.tranches) {
+      // Scénario 2 — fractionné
+      return `
+        <div class="sc-section-title">Mode de paiement</div>
+        <div class="sc-info-grid">
+          ${kv('Mode', `<strong>${p.mode}</strong>`)}
+          ${kv('Prestataire', p.provider)}
+          ${kv('Statut global', `<span style="color:${meta.couleur}">${p.statut}</span>`)}
+        </div>
+        <div class="sc-section-title" style="margin-top:16px">Échéancier des tranches</div>
+        <div class="sc-tranches">
+          ${p.tranches.map(t => `
+            <div class="sc-tranche">
+              <div class="sc-tranche-head">
+                <strong>${t.label}</strong>
+                <span class="sc-tranche-montant">${t.montant}</span>
+              </div>
+              <div class="sc-tranche-meta">
+                <span>Échéance : <em>${t.echeance}</em></span>
+                <span>${t.statut}</span>
+                <code class="sc-tx-id">${t.txId}</code>
+              </div>
+            </div>`).join('')}
+        </div>`;
+    }
+    // Transactions classiques (S1, S3)
+    return `
+      <div class="sc-section-title">Mode de paiement</div>
+      <div class="sc-info-grid">
+        ${kv('Mode', `<strong>${p.mode}</strong>`)}
+        ${kv('Prestataire', p.provider)}
+        ${kv('Méthode', p.methode || p.provider)}
+        ${kv('Statut global', `<span style="color:${meta.couleur}">${p.statut}</span>`)}
+      </div>
+      <div class="sc-section-title" style="margin-top:16px">Transactions</div>
+      <table class="sc-table">
+        <thead><tr><th>ID</th><th>Montant</th><th>Date</th><th>Statut</th><th>Délai</th></tr></thead>
+        <tbody>
+          ${(p.transactions || []).map(t => `<tr>
+            <td><code>${t.id}</code></td>
+            <td>${t.montant}</td>
+            <td>${t.date}</td>
+            <td>${t.statut}</td>
+            <td>${t.delai}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  function renderAlertes(alertes, meta) {
+    if (!alertes.length) return '<p class="sc-empty">Aucune alerte pour ce scénario.</p>';
+    const niveauColor = { Critique: '#993C1D', Danger: '#854F0B', Urgent: '#7B1D1D' };
+    return alertes.map(a => `
+      <div class="sc-alert-card">
+        <div class="sc-alert-header">
+          <span class="sc-alert-icone">${a.icone}</span>
+          <div>
+            <strong class="sc-alert-type">${a.type}</strong>
+            <span class="sc-alert-id"><code>${a.id}</code></span>
+          </div>
+          <span class="sc-alert-niveau" style="color:${niveauColor[a.niveau]||'#993C1D'};border-color:${niveauColor[a.niveau]||'#993C1D'}40">
+            ${a.niveau}
+          </span>
+        </div>
+        <p class="sc-alert-msg">${a.message}</p>
+        <div class="sc-alert-footer">
+          <span>🗓 ${a.date}</span>
+          <span class="sc-alert-impact">⚡ ${a.impact}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  function renderAnalytiques(an, meta) {
+    return `
+      <div class="sc-section-title">Indicateurs clés (KPIs)</div>
+      <div class="sc-kpi-grid">
+        ${an.kpis.map(k => `
+          <div class="sc-kpi-card">
+            <span class="sc-kpi-icone">${k.icone}</span>
+            <span class="sc-kpi-val" style="color:${meta.couleur}">${k.valeur}</span>
+            <span class="sc-kpi-label">${k.label}</span>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  // ── SIMULATION ────────────────────────────────────────────
+  function toggleSim() {
+    if (simRunning) {
+      pauseSim();
+    } else {
+      if (simStep >= VDMS_MOCK[currentScId].etapes.length) {
+        resetSim();
+        setTimeout(startSim, 100);
+      } else {
+        startSim();
+      }
+    }
+  }
+
+  function startSim() {
+    simRunning = true;
+    simBtn.innerHTML = '<span class="sc-sim-icon">⏸</span> Pause';
+
+    function nextStep() {
+      const sc = VDMS_MOCK[currentScId];
+      if (simStep >= sc.etapes.length) {
+        stopSim();
+        return;
+      }
+      activateSimStep(simStep);
+      simStep++;
+      updateProgress(simStep, sc.etapes.length);
+    }
+
+    nextStep();
+    simInterval = setInterval(nextStep, 2200);
+  }
+
+  function pauseSim() {
+    clearInterval(simInterval);
+    simRunning = false;
+    simBtn.innerHTML = '<span class="sc-sim-icon">▶</span> Reprendre';
+  }
+
+  function stopSim() {
+    clearInterval(simInterval);
+    simRunning = false;
+    simBtn.innerHTML = '<span class="sc-sim-icon">↺</span> Recommencer';
+    detailText.textContent = '✓ Simulation terminée — Scénario complet.';
+  }
+
+  function resetSim() {
+    clearInterval(simInterval);
+    simRunning = false;
+    simStep    = 0;
+    simBtn.innerHTML = '<span class="sc-sim-icon">▶</span> Simuler le parcours';
+    detailText.textContent = 'Lancez la simulation pour explorer le parcours étape par étape.';
+    const sc = VDMS_MOCK[currentScId];
+    updateProgress(0, sc.etapes.length);
+    // Reset tous les steps
+    document.querySelectorAll('.sc-step').forEach(el => {
+      el.className = 'sc-step step-inactive';
+    });
+  }
+
+  function activateSimStep(idx) {
+    const sc = VDMS_MOCK[currentScId];
+    const etape = sc.etapes[idx];
+
+    const steps = document.querySelectorAll('.sc-step');
+
+    // Désactiver le step "en cours" précédent
+    steps.forEach((el, i) => {
+      if (i < idx) {
+        const s = STATUS[sc.etapes[i].statut] || STATUS.ok;
+        el.className = `sc-step step-done ${s.cls}`;
+        el.querySelector('.sc-step-dot').textContent = s.icon;
+      }
+    });
+
+    // Activer le step courant
+    const el = steps[idx];
+    if (el) {
+      el.className = `sc-step step-current`;
+      el.querySelector('.sc-step-dot').textContent = '▶';
+      el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    // Mettre à jour le détail
+    detailText.textContent = etape.detail;
+
+    // Basculer l'onglet correspondant
+    if (etape.tab) {
+      // Vérifier que l'onglet existe pour ce scénario
+      const tabExists = TAB_DEFS[currentScId].some(t => t.id === etape.tab);
+      if (tabExists) activateTab(etape.tab);
+    }
+  }
+
+  function updateProgress(current, total) {
+    const pct = total > 0 ? (current / total) * 100 : 0;
+    progressBar.style.width = pct + '%';
+    progressLbl.textContent = `Étape ${current} / ${total}`;
+  }
+
+  // ── DÉMARRAGE ─────────────────────────────────────────────
+  init();
+
+})();
+</script>
+
+</body>
+</html>
