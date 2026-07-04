@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Contrats</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html"><div class="logo-icon">V</div><h1>VDMS <em>Consulting</em></h1></a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" class="active" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option><option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option><option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option><option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒&nbsp;<span data-i18n="nav_cart">Panier</span>&nbsp;<span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<main>
+  <section>
+    <h2 data-i18n="nav_contracts">Contrats</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Client</th><th>Type de contrat</th><th>Valeur</th><th>Durée</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Entreprise Alpha</strong></td><td>Abonnement Cloud Public</td><td>1 200 €/mois</td><td>12 mois</td><td><span class="badge badge-green">En cours</span></td></tr>
+          <tr><td><strong>Entreprise Beta</strong></td><td>Maintenance Cloud Privé</td><td>2 400 €/mois</td><td>24 mois</td><td><span class="badge badge-yellow">Prévision</span></td></tr>
+          <tr><td><strong>Entreprise Gamma</strong></td><td>Monitoring & Cybersécurité</td><td>800 €/mois</td><td>6 mois</td><td><span class="badge badge-green">En cours</span></td></tr>
+          <tr><td><strong>TechStart SAS</strong></td><td>Fournitures IT multi-fournisseurs</td><td>Ponctuel</td><td>—</td><td><span class="badge badge-blue">Livré</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ajouter un contact ou client</h2>
+    <div class="section-box">
+      <form id="form-client">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" required placeholder="Ex : M. Dupont"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required placeholder="contact@entreprise.fr"/>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="text" id="telephone" placeholder="06 00 00 00 00"/>
+          </div>
+          <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input type="text" id="adresse" placeholder="Paris, France"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Type / remarque</label>
+          <textarea id="message" placeholder="Ex : Client PME, fournisseur potentiel, prospect B2B..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn" type="submit">Enregistrer le contact</button>
+          <div id="confirmation-form"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contacts enregistrés</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Nom</th><th>Email</th><th>Téléphone</th><th>Adresse</th><th>Date</th></tr>
+        </thead>
+        <tbody id="clients-body">
+          <tr>
+            <td><strong>M. Dupont</strong></td>
+            <td>contrats@vdms.fr</td>
+            <td>06 00 00 00 01</td>
+            <td>Paris</td>
+            <td>15/04/2026</td>
+          </tr>
+          <tr>
+            <td><strong>Mme Martin</strong></td>
+            <td>contrats@vdms.fr</td>
+            <td>06 00 00 00 02</td>
+            <td>Cergy</td>
+            <td>16/04/2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><a href="/cdn-cgi/l/
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

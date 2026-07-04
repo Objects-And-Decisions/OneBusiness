@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Paiement</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── PAGE PAIEMENT ── */
+    .paiement-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      align-items: start;
+    }
+    @media(max-width: 860px) {
+      .paiement-layout { grid-template-columns: 1fr; }
+      .recap-col { order: -1; }
+    }
+
+    /* Étapes */
+    .steps-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 36px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 18px 28px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 24px;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% - 120px);
+      height: 2px;
+      background: var(--gray-200);
+      margin-left: 120px;
+    }
+    .step.done:not(:last-child)::after { background: var(--green); }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+      border: 2px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-400);
+      transition: all .3s;
+    }
+    .step.done .step-num { background: var(--green); border-color: var(--green); color: #fff; }
+    .step.active .step-num { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .step-label { font-size: 12px; font-weight: 600; color: var(--gray-400); }
+    .step.done .step-label, .step.active .step-label { color: var(--navy); }
+
+    /* Blocs formulaire */
+    .pay-block {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 14px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .pay-block.active-block { border-color: var(--green); box-shadow: 0 0 0 3px rgba(22,163,74,.08); }
+    .pay-block-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .pay-block-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .pay-block-title { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .pay-block-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .pay-block-badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .pay-block-body { padding: 0 22px 22px; display: none; }
+    .pay-block.open .pay-block-body { display: block; }
+
+    /* Méthodes de paiement */
+    .pay-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    @media(max-width:500px){ .pay-methods { grid-template-columns: 1fr 1fr; } }
+    .pay-method {
+      border: 2px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      background: var(--white);
+      position: relative;
+    }
+    .pay-method:hover { border-color: var(--green); background: var(--green-bg); }
+    .pay-method.selected { border-color: var(--green); background: var(--green-bg); }
+    .pay-method.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .pay-method-logo { font-size: 24px; margin-bottom: 6px; }
+    .pay-method-name { font-size: 11px; font-weight: 700; color: var(--navy); }
+    .pay-method-desc { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Carte */
+    .card-preview {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      border-radius: 16px;
+      padding: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+    .card-preview::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .card-preview::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: rgba(22,163,74,.12);
+    }
+    .card-chip { font-size: 28px; margin-bottom: 16px; }
+    .card-number-display {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,.9);
+    }
+    .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+    .card-holder { font-size: 12px; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: 1px; }
+    .card-holder strong { display: block; font-size: 14px; color: #fff; margin-top: 2px; letter-spacing: 1.5px; }
+    .card-expiry { font-size: 12px; color: rgba(255,255,255,.6); text-align: right; }
+    .card-expiry strong { display: block; font-size: 15px; color: #fff; }
+    .card-network { position: absolute; top: 20px; right: 20px; font-size: 22px; }
+
+    /* Inputs spéciaux */
+    .input-icon-wrap { position: relative; }
+    .input-icon-wrap input { padding-right: 44px; }
+    .input-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 16px; pointer-events: none; }
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { font-size: 12px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+    .form-group { margin-bottom: 14px; }
+    input:focus, select:focus { border-color: var(--green) !important; box-shadow: 0 0 0 3px rgba(22,163,74,.1) !important; outline: none; }
+
+    /* SEPA */
+    .sepa-badge {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #1d4ed8;
+    }
+
+    /* Fractionnement */
+    .split-options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .split-opt {
+      border: 2px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .split-opt:hover { border-color: var(--green); }
+    .split-opt.selected { border-color: var(--green); background: var(--green-bg); }
+    .split-opt-n { font-size: 22px; font-weight: 800; color: var(--navy); }
+    .split-opt-label { font-size: 11px; color: var(--text-muted); }
+    .split-opt-amount { font-size: 13px; font-weight: 700; color: var(--green); margin-top: 4px; }
+
+    /* Récapitulatif */
+    .recap-col {
+      position: sticky;
+      top: 90px;
+    }
+    .recap-box {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .recap-title { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .recap-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 13px; }
+    .recap-item:last-child { border-bottom: none; }
+    .recap-item-name { color: rgba(255,255,255,.8); flex: 1; margin-right: 12px; }
+    .recap-item-price { color: #fff; font-weight: 700; white-space: nowrap; }
+    .recap-divider { height: 1px; background: rgba(255,255,255,.12); margin: 12px 0; }
+    .recap-total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; }
+    .recap-total-label { font-size: 13px; color: rgba(255,255,255,.6); }
+    .recap-total-val { font-size: 22px; font-weight: 800; color: #fff; }
+    .recap-discount { background: rgba(22,163,74,.15); border: 1px solid rgba(22,163,74,.3); border-radius: 8px; padding: 10px 14px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .recap-discount-label { font-size: 12px; color: #4ade80; }
+    .recap-discount-val { font-size: 14px; font-weight: 800; color: #4ade80; }
+    .recap-empty { text-align: center; padding: 24px 0; color: rgba(255,255,255,.4); font-size: 13px; }
+
+    .security-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .sec-badge {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+
+    /* Bouton payer */
+    .btn-pay {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green), #15803d);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(22,163,74,.35);
+      letter-spacing: .3px;
+    }
+    .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(22,163,74,.45); }
+    .btn-pay:active { transform: translateY(0); }
+    .btn-pay:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; box-shadow: none; transform: none; }
+
+    /* Confirmation modale */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes popIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+    .modal-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--green), #15803d);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 28px rgba(22,163,74,.35);
+    }
+    .modal-title { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .modal-sub { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px; }
+    .modal-ref { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 8px; padding: 12px 18px; font-size: 13px; color: var(--green); font-weight: 700; margin: 16px 0 28px; display: inline-block; letter-spacing: 1px; }
+    .modal-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* Loader */
+    .loader-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,.85);
+      z-index: 8500;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      backdrop-filter: blur(2px);
+    }
+    .loader-overlay.open { display: flex; }
+    .loader-spinner {
+      width: 56px;
+      height: 56px;
+      border: 5px solid var(--gray-200);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-size: 15px; font-weight: 700; color: var(--navy); }
+
+    /* Highlight input invalide */
+    input.invalid { border-color: #dc2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,.1) !important; }
+
+    .info-note {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html"><div class="logo-icon">V</div><h1>VDMS <em>Consulting</em></h1></a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">🛒 <span data-i18n="nav_cart">Panier</span> <span class="compteur-panier">0</span></a>
+    </div>
+  </div>
+</header>
+<div class="topbar"><div class="topbar-inner"><span data-i18n="topbar_msg"></span><span class="topbar-tag" data-i18n="topbar_tag"></span></div></div>
+
+<!-- ÉTAPES -->
+<div class="steps-bar">
+  <div class="step done">
+    <div class="step-num">✓</div>
+    <div><div class="step-label">Panier</div></div>
+  </div>
+  <div class="step active">
+    <div class="step-num">2</div>
+    <div><div class="step-label">Paiement</div></div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div><div class="step-label">Confirmation</div></div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="paiement-layout">
+
+  <!-- COLONNE GAUCHE : Formulaires -->
+  <div class="form-col">
+
+    <!-- BLOC 1 : COORDONNÉES -->
+    <div class="pay-block open active-block" id="bloc-coordonnees">
+      <div class="pay-block-header" onclick="toggleBloc('bloc-coordonnees')">
+        <div class="pay-block-icon">👤</div>
+        <div>
+          <div class="pay-block-title">Coordonnées de facturation</div>
+          <div class="pay-block-subtitle">Entreprise ou particulier</div>
+        </div>
+        <span class="pay-block-badge badge badge-blue">Étape 1</span>
+      </div>
+      <div class="pay-block-body">
+        <div class="input-row">
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" placeholder="Jean" autocomplete="given-name"/>
+          </div>
+          <div class="form-group">
+            <label for="nom-fact">Nom *</label>
+            <input type="text" id="nom-fact" placeholder="Dupont" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="societe">Société (optionnel)</label>
+          <input type="text" id="societe" placeholder="VDMS Consulting SAS" autocomplete="organization"/>
+        </div>
+        <div class="form-group">
+          <label for="email-pay">Email *</label>
+          <div class="input-icon-wrap">
+            <input type="email" id="email-pay" placeholder="contact@entreprise.fr" autocomplete="email"/>
+            <span class="input-icon">✉</span>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="form-group">
+            <label for="tel-pay">Téléphone</label>
+            <input type="tel" id="tel-pay" placeholder="06 00 00 00 00" autocomplete="tel"/>
+          </div>
+          <div class="form-group">
+            <label for="pays">Pays</label>
+            <select id="pays">
+              <option value="FR">🇫🇷 France</option>
+              <option value="BE">🇧🇪 Belgique</option>
+              <option value="CH">🇨🇭 Suisse</option>
+              <option value="LU">🇱🇺 Luxembourg</option>
+              <option value="DE">🇩🇪 Allemagne</option>
+              <option value="ES">🇪🇸 Espagne</option>
+              <option value="IT">🇮🇹 Italie</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adresse-pay">Adresse de facturation *</label>
+          <input type="text" id="adresse-pay" placeholder="12 rue de la Paix" autocomplete="street-address"/>
+        </div>
+        <div class="input-row">
+          <div class="form-group">
+            <label for="cp">Code postal *</label>
+            <input type="text" id="cp" placeholder="75001" maxlength="10" autocomplete="postal-code"/>
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville *</label>
+            <input type="text" id="ville" placeholder="Paris" autocomplete="address-level2"/>
+          </div>
+        </div>
+        <button class="btn" style="margin-top:6px" onclick="validerCoordonnees()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- BLOC 2 : MÉTHODE DE PAIEMENT -->
+    <div class="pay-block" id="bloc-methode">
+      <div class="pay-block-header" onclick="toggleBloc('bloc-methode')">
+        <div class="pay-block-icon">💳</div>
+        <div>
+          <div class="pay-block-title">Méthode de paiement</div>
+          <div class="pay-block-subtitle">Sécurisé 3DS2 · DSP2</div>
+        </div>
+        <span class="pay-block-badge badge badge-green">Sécurisé</span>
+      </div>
+      <div class="pay-block-body">
+        <!-- Méthodes -->
+        <div class="pay-methods">
+          <div class="pay-method selected" id="pm-carte" onclick="selectMethode('carte')">
+            <div class="pay-method-logo">💳</div>
+            <div class="pay-method-name">Carte</div>
+            <div class="pay-method-desc">Visa · MC · Amex</div>
+          </div>
+          <div class="pay-method" id="pm-sepa" onclick="selectMethode('sepa')">
+            <div class="pay-method-logo">🏦</div>
+            <div class="pay-method-name">Virement SEPA</div>
+            <div class="pay-method-desc">B2B · Instantané</div>
+          </div>
+          <div class="pay-method" id="pm-alma" onclick="selectMethode('alma')">
+            <div class="pay-method-logo">🔄</div>
+            <div class="pay-method-name">Paiement 3x/6x</div>
+            <div class="pay-method-desc">Alma · Hokodo</div>
+          </div>
+        </div>
+
+        <!-- CARTE -->
+        <div id="form-carte">
+          <!-- Visuel carte -->
+          <div class="card-preview">
+            <div class="card-chip">▪</div>
+            <div class="card-number-display" id="disp-number">•••• •••• •••• ••••</div>
+            <div class="card-bottom">
+              <div class="card-holder">
+                Titulaire
+                <strong id="disp-name">VOTRE NOM</strong>
+              </div>
+              <div class="card-expiry">
+                Expire
+                <strong id="disp-expiry">MM/AA</strong>
+              </div>
+            </div>
+            <div class="card-network" id="disp-network">💳</div>
+          </div>
+
+          <div class="form-group">
+            <label for="card-number">Numéro de carte *</label>
+            <div class="input-icon-wrap">
+              <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number"
+                oninput="formatCardNumber(this)" onblur="detectReseau(this.value)"/>
+              <span class="input-icon" id="card-network-icon">💳</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="card-name">Nom sur la carte *</label>
+            <input type="text" id="card-name" placeholder="JEAN DUPONT" style="text-transform:uppercase"
+              oninput="document.getElementById('disp-name').textContent = this.value.toUpperCase() || 'VOTRE NOM'" autocomplete="cc-name"/>
+          </div>
+          <div class="input-row">
+            <div class="form-group">
+              <label for="card-expiry">Date d'expiration *</label>
+              <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp"
+                oninput="formatExpiry(this)"/>
+            </div>
+            <div class="form-group">
+              <label for="card-cvv">CVV *</label>
+              <div class="input-icon-wrap">
+                <input type="password" id="card-cvv" placeholder="•••" maxlength="4" autocomplete="cc-csc"/>
+                <span class="input-icon" title="3 chiffres au dos de la carte">🔒</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-note">
+            🔒 Vos données bancaires sont chiffrées (TLS 1.3) et ne sont jamais stockées sur nos serveurs. Conforme DSP2 / 3DS2.
+          </div>
+        </div>
+
+        <!-- SEPA -->
+        <div id="form-sepa" style="display:none">
+          <div class="sepa-badge">
+            🏦 Virement SEPA instantané B2B — disponible pour tous les pays de la zone euro
+          </div>
+          <div class="form-group">
+            <label for="iban">IBAN *</label>
+            <input type="text" id="iban" placeholder="FR76 3000 6000 0112 3456 7890 189" maxlength="34"
+              oninput="formatIBAN(this)"/>
+          </div>
+          <div class="form-group">
+            <label for="bic">BIC / SWIFT</label>
+            <input type="text" id="bic" placeholder="BNPAFRPPXXX" style="text-transform:uppercase"
+              oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+          <div class="form-group">
+            <label for="titulaire-sepa">Titulaire du compte *</label>
+            <input type="text" id="titulaire-sepa" placeholder="Nom de l'entreprise ou de la personne"/>
+          </div>
+          <div class="info-note">
+            ✅ En validant, vous autorisez VDMS Consulting à initier un prélèvement SEPA sur votre compte. Mandat SEPA B2B — délai 1–2 jours ouvrés.
+          </div>
+        </div>
+
+        <!-- ALMA -->
+        <div id="form-alma" style="display:none">
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Choisissez votre échéancier de paiement :</p>
+          <div class="split-options" id="split-options">
+            <!-- Rempli par JS -->
+          </div>
+          <div id="alma-schedule" style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:14px;font-size:12px;color:var(--text-muted);display:none">
+            <!-- Échéancier -->
+          </div>
+          <div class="info-note" style="margin-top:12px">
+            🔄 Paiement fractionné sans frais via <strong>Alma</strong> ou <strong>Hokodo</strong>. Disponible à partir de 100 €. Sous réserve d'acceptation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOC 3 : LIVRAISON -->
+    <div class="pay-block" id="bloc-livraison">
+      <div class="pay-block-header" onclick="toggleBloc('bloc-livraison')">
+        <div class="pay-block-icon">🚚</div>
+        <div>
+          <div class="pay-block-title">Mode de livraison</div>
+          <div class="pay-block-subtitle">Choisissez votre option</div>
+        </div>
+        <span class="pay-block-badge badge badge-yellow">Étape 3</span>
+      </div>
+      <div class="pay-block-body">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <label class="pay-method" style="text-align:left;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer" onclick="selectLivraison('standard', this)">
+            <input type="radio" name="livraison" value="standard" checked style="width:auto;margin:0"/>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;color:var(--navy)">📦 Standard — 3 à 5 jours ouvrés</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Colissimo · Suivi inclus</div>
+            </div>
+            <div style="font-weight:800;color:var(--green);font-size:13px" id="prix-standard">Gratuit</div>
+          </label>
+          <label class="pay-method" style="text-align:left;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer" onclick="selectLivraison('express', this)">
+            <input type="radio" name="livraison" value="express" style="width:auto;margin:0"/>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;color:var(--navy)">⚡ Express — 24 à 48h</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Chronopost · Prioritaire</div>
+            </div>
+            <div style="font-weight:800;color:var(--navy);font-size:13px" id="prix-express">+29 €</div>
+          </label>
+          <label class="pay-method" style="text-align:left;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer" onclick="selectLivraison('groupee', this)">
+            <input type="radio" name="livraison" value="groupee" style="width:auto;margin:0"/>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:13px;color:var(--navy)">📦 Groupée B2B — 7 à 10 jours</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Palette · Recommandé > 10 articles</div>
+            </div>
+            <div style="font-weight:800;color:var(--navy);font-size:13px">Gratuit</div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /form-col -->
+
+  <!-- COLONNE DROITE : Récap -->
+  <div class="recap-col">
+    <div class="recap-box">
+      <div class="recap-title">Récapitulatif</div>
+      <div id="recap-items">
+        <div class="recap-empty">Chargement du panier…</div>
+      </div>
+      <div class="recap-divider"></div>
+      <div id="recap-discount" style="display:none" class="recap-discount">
+        <span class="recap-discount-label">🎉 Remise volume</span>
+        <span class="recap-discount-val" id="recap-disc-val">− 0 €</span>
+      </div>
+      <div class="recap-divider"></div>
+      <div class="recap-total-row">
+        <span class="recap-total-label">Total TTC</span>
+        <span class="recap-total-val" id="recap-total">0,00 €</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px">
+        <span style="font-size:11px;color:rgba(255,255,255,.4)">Livraison</span>
+        <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,.7)" id="recap-livraison">Gratuite</span>
+      </div>
+    </div>
+
+    <button class="btn-pay" id="btn-payer" onclick="lancerPaiement()">
+      <span>🔒</span>
+      <span id="btn-pay-label">Payer maintenant</span>
+    </button>
+
+    <div class="security-badges" style="margin-top:12px">
+      <div class="sec-badge">🔒 SSL 256 bits</div>
+      <div class="sec-badge">✅ 3DS2</div>
+      <div class="sec-badge">🇪🇺 DSP2</div>
+      <div class="sec-badge">🔐 RGPD</div>
+    </div>
+
+    <div class="info-note" style="margin-top:14px">
+      🔄 Vous pouvez <a href="panier.html" style="color:var(--green);font-weight:700">modifier votre panier</a> avant de valider.
+    </div>
+  </div>
+
+</div><!-- /paiement-layout -->
+
+<!-- LOADER -->
+<div class="loader-overlay" id="loader">
+  <div class="loader-spinner"></div>
+  <div class="loader-text" id="loader-text">Traitement en cours…</div>
+</div>
+
+<!-- MODAL CONFIRMATION -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal-box">
+    <div class="modal-icon">✓</div>
+    <div class="modal-title">Commande confirmée !</div>
+    <div class="modal-sub">Votre paiement a été accepté. Un email de confirmation vous a été envoyé à <strong id="modal-email">votre adresse</strong>.</div>
+    <div class="modal-ref" id="modal-ref">CMD-2026-XXXX</div>
+    <div class="modal-sub" style="font-size:12px">Votre commande sera traitée sous 24h ouvrées. Vous recevrez un suivi de livraison par email.</div>
+    <div class="modal-actions">
+      <a class="btn" href="commandes.html">Voir mes commandes</a>
+      <a class="btn-outline" href="produits.html">Continuer mes achats</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>VDMS Consulting</h3><p data-i18n="footer_desc"></p></div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="panier.html" data-i18n="nav_cart">Panier</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="mailto:contrats@vdms.fr">contrats@vdms.fr</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+<script>
+// ── PAIEMENT PAGE LOGIC ──────────────────────────────────────
+
+let methodeActive = 'carte';
+let livraisonActive = 'standard';
+let livraisonFrais = 0;
+let splitSelected = 3;
+
+// ── Récapitulatif depuis localStorage ───────────────────────
+function chargerRecap() {
+  try {
+    const stored = localStorage.getItem('vdms_panier');
+    const items = stored ? JSON.parse(stored) : [];
+    const recapDiv = document.getElementById('recap-items');
+
+    if (!items.length) {
+      recapDiv.innerHTML = '<div class="recap-empty">Votre panier est vide.</div>';
+      document.getElementById('recap-total').textContent = '0,00 €';
+      document.getElementById('btn-payer').disabled = true;
+      return;
+    }
+
+    let total = 0;
+    recapDiv.innerHTML = items.map(item => {
+      total += item.prix;
+      return `<div class="recap-item">
+        <span class="recap-item-name">${item.nom}<br><small style="color:rgba(255,255,255,.35);font-size:10px">${item.fournisseur}</small></span>
+        <span class="recap-item-price">${formatPrix(item.prix)}</span>
+      </div>`;
+    }).join('');
+
+    let reduction = 0;
+    if (items.length >= 20) reduction = total * 0.5;
+    else if (items.length >= 10) reduction = total * 0.2;
+
+    const totalFinal = total - reduction + livraisonFrais;
+
+    if (reduction > 0) {
+      document.getElementById('recap-discount').style.display = 'flex';
+      document.getElementById('recap-disc-val').textContent = '− ' + formatPrix(reduction);
+    }
+
+    document.getElementById('recap-total').textContent = formatPrix(totalFinal);
+    document.getElementById('btn-pay-label').textContent = 'Payer ' + formatPrix(totalFinal);
+
+    // Alma split options
+    buildSplitOptions(totalFinal);
+
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+// ── Format helpers ───────────────────────────────────────────
+function formatPrix(v) {
+  return Number(v).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+// ── Toggle blocs ─────────────────────────────────────────────
+function toggleBloc(id) {
+  const bloc = document.getElementById(id);
+  bloc.classList.toggle('open');
+}
+
+function ouvrirBloc(id) {
+  document.querySelectorAll('.pay-block').forEach(b => {
+    b.classList.remove('active-block');
+  });
+  const bloc = document.getElementById(id);
+  bloc.classList.add('open');
+  bloc.classList.add('active-block');
+  bloc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Validation coordonnées ───────────────────────────────────
+function validerCoordonnees() {
+  const champs = ['prenom', 'nom-fact', 'email-pay', 'adresse-pay', 'cp', 'ville'];
+  let ok = true;
+  champs.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('invalid');
+      ok = false;
+    } else {
+      el.classList.remove('invalid');
+    }
+  });
+  // Validation email
+  const emailEl = document.getElementById('email-pay');
+  if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+    emailEl.classList.add('invalid');
+    ok = false;
+  }
+  if (ok) {
+    document.getElementById('bloc-coordonnees').classList.remove('active-block');
+    ouvrirBloc('bloc-methode');
+  } else {
+    showToast('Veuillez remplir tous les champs obligatoires (*)', 'error');
+  }
+}
+
+// ── Méthode de paiement ──────────────────────────────────────
+function selectMethode(m) {
+  methodeActive = m;
+  ['carte', 'sepa', 'alma'].forEach(id => {
+    document.getElementById('pm-' + id).classList.toggle('selected', id === m);
+    document.getElementById('form-' + id).style.display = id === m ? 'block' : 'none';
+  });
+}
+
+// ── Livraison ────────────────────────────────────────────────
+function selectLivraison(type, el) {
+  livraisonActive = type;
+  document.querySelectorAll('#bloc-livraison .pay-method').forEach(b => b.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+  livraisonFrais = type === 'express' ? 29 : 0;
+  document.getElementById('recap-livraison').textContent = type === 'express' ? '+ 29,00 €' : 'Gratuite';
+  chargerRecap();
+}
+
+// ── Format numéro carte ──────────────────────────────────────
+function formatCardNumber(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 16);
+  v = v.replace(/(.{4})/g, '$1 ').trim();
+  input.value = v;
+  const display = v.padEnd(19, '•').replace(/[0-9]/g, (d, i) => i < 12 ? '•' : d);
+  const parts = v.split(' ');
+  let disp = '';
+  for (let i = 0; i < 4; i++) {
+    disp += (i < 3 ? (parts[i] ? parts[i].padEnd(4,'•') : '••••') : (parts[3] || '••••')) + (i < 3 ? ' ' : '');
+  }
+  document.getElementById('disp-number').textContent = disp;
+  detectReseau(v);
+}
+
+function detectReseau(num) {
+  const n = num.replace(/\s/g, '');
+  let icon = '💳', name = '💳';
+  if (/^4/.test(n)) { icon = '🔵'; name = 'VISA'; }
+  else if (/^5[1-5]/.test(n)) { icon = '🔴'; name = 'MC'; }
+  else if (/^3[47]/.test(n)) { icon = '🟢'; name = 'AMEX'; }
+  document.getElementById('card-network-icon').textContent = icon;
+  document.getElementById('disp-network').textContent = name;
+}
+
+function formatExpiry(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 4);
+  if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2);
+  input.value = v;
+  document.getElementById('disp-expiry').textContent = v || 'MM/AA';
+}
+
+// ── IBAN ─────────────────────────────────────────────────────
+function formatIBAN(input) {
+  let v = input.value.replace(/\s/g, '').toUpperCase().substring(0, 27);
+  v = v.replace(/(.{4})/g, '$1 ').trim();
+  input.value = v;
+}
+
+// ── Alma split ───────────────────────────────────────────────
+function buildSplitOptions(total) {
+  const container = document.getElementById('split-options');
+  if (!container) return;
+  const opts = [
+    { n: 3, label: 'fois sans frais', days: 30 },
+    { n: 6, label: 'fois sans frais', days: 30 },
+    { n: 1, label: 'paiement 30j', days: 30 },
+  ];
+  container.innerHTML = opts.map((o, i) => `
+    <div class="split-opt ${i === 0 ? 'selected' : ''}" onclick="selectSplit(${o.n}, this, ${total})">
+      <div class="split-opt-n">${o.n}×</div>
+      <div class="split-opt-label">${o.label}</div>
+      <div class="split-opt-amount">${formatPrix(total / o.n)}/mois</div>
+    </div>`).join('');
+}
+
+function selectSplit(n, el, total) {
+  splitSelected = n;
+  document.querySelectorAll('.split-opt').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  const sched = document.getElementById('alma-schedule');
+  sched.style.display = 'block';
+  const today = new Date();
+  let html = '<div style="font-weight:700;color:var(--navy);margin-bottom:8px">Échéancier prévisionnel :</div>';
+  for (let i = 0; i < n; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + i * 30);
+    html += `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--gray-200)">
+      <span>Versement ${i + 1} — ${d.toLocaleDateString('fr-FR')}</span>
+      <span style="font-weight:700;color:var(--green)">${formatPrix(total / n)}</span>
+    </div>`;
+  }
+  sched.innerHTML = html;
+}
+
+// ── Lancer le paiement ───────────────────────────────────────
+function lancerPaiement() {
+  // Validation minimale selon méthode
+  let ok = true;
+
+  if (methodeActive === 'carte') {
+    const num = document.getElementById('card-number').value.replace(/\s/g, '');
+    const name = document.getElementById('card-name').value.trim();
+    const exp = document.getElementById('card-expiry').value;
+    const cvv = document.getElementById('card-cvv').value;
+    if (num.length < 16) { document.getElementById('card-number').classList.add('invalid'); ok = false; }
+    if (!name) { document.getElementById('card-name').classList.add('invalid'); ok = false; }
+    if (exp.length < 5) { document.getElementById('card-expiry').classList.add('invalid'); ok = false; }
+    if (cvv.length < 3) { document.getElementById('card-cvv').classList.add('invalid'); ok = false; }
+  } else if (methodeActive === 'sepa') {
+    const iban = document.getElementById('iban').value.replace(/\s/g, '');
+    const tit = document.getElementById('titulaire-sepa').value.trim();
+    if (iban.length < 14) { document.getElementById('iban').classList.add('invalid'); ok = false; }
+    if (!tit) { document.getElementById('titulaire-sepa').classList.add('invalid'); ok = false; }
+  }
+
+  if (!ok) {
+    showToast('Veuillez compléter les informations de paiement', 'error');
+    return;
+  }
+
+  // Simulate payment processing
+  const loader = document.getElementById('loader');
+  const loaderText = document.getElementById('loader-text');
+  loader.classList.add('open');
+
+  const steps = [
+    'Vérification des informations…',
+    'Connexion sécurisée au serveur…',
+    'Authentification 3DS2…',
+    'Validation du paiement…',
+    'Confirmation en cours…'
+  ];
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < steps.length) {
+      loaderText.textContent = steps[i++];
+    } else {
+      clearInterval(interval);
+      loader.classList.remove('open');
+      confirmerPaiement();
+    }
+  }, 700);
+}
+
+function confirmerPaiement() {
+  // Générer référence
+  const ref = 'CMD-' + new Date().getFullYear() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  document.getElementById('modal-ref').textContent = ref;
+
+  const email = document.getElementById('email-pay').value || 'votre adresse';
+  document.getElementById('modal-email').textContent = email;
+
+  // Vider le panier
+  try { localStorage.removeItem('vdms_panier'); } catch(e) {}
+  mettreAJourCompteurPanier();
+
+  // Afficher la modale
+  document.getElementById('modal-confirm').classList.add('open');
+
+  // Mise à jour étapes
+  document.querySelectorAll('.step').forEach((s, i) => {
+    if (i <= 1) s.classList.add('done');
+    if (i === 2) { s.classList.add('done'); s.querySelector('.step-num').textContent = '✓'; }
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  chargerRecap();
+
+  // Remove invalid class on input
+  document.querySelectorAll('input').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('invalid'));
+  });
+
+  // Pre-fill name from coordonnees if filled
+  document.getElementById('nom-fact').addEventListener('input', () => {
+    const prenom = document.getElementById('prenom').value;
+    const nom = document.getElementById('nom-fact').value;
+    const full = (prenom + ' ' + nom).trim().toUpperCase();
+    const cardName = document.getElementById('card-name');
+    if (!cardName.value) {
+      document.getElementById('disp-name').textContent = full || 'VOTRE NOM';
+    }
+  });
+});
+</script>
+</body>
+</html>

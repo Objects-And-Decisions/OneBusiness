@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDMS Consulting — Plateforme B2B e-commerce</title>
+  <meta name="description" content="VDMS Consulting — plateforme B2B e-commerce cloud, centralisation des achats, multi-fournisseurs."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" class="active" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+            <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">
+        🛒 <span data-i18n="nav_cart">Panier</span>
+        <span class="compteur-panier">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span data-i18n="topbar_msg">Plateforme B2B e-commerce — Solutions cloud & centralisation des achats</span>
+    <span class="topbar-tag" data-i18n="topbar_tag">Version bêta 2026</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label" data-i18n="hero_label">Plateforme B2B · Cloud · E-commerce</div>
+    <h2 data-i18n="hero_title">La plateforme <em>B2B e-commerce</em><br>pour entreprises ambitieuses</h2>
+    <p data-i18n="hero_desc">VDMS Consulting centralise vos achats, gère vos fournisseurs, optimise vos coûts et pilote vos commandes depuis un seul endroit.</p>
+    <div class="hero-actions">
+      <a class="btn" href="produits.html" data-i18n="hero_btn1">Voir les produits</a>
+      <a class="btn-ghost" href="services.html" data-i18n="hero_btn2">Nos services</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-val" data-i18n="stat1_val">4</span>
+      <div class="stat-lbl" data-i18n="stat1_lbl">Fournisseurs partenaires</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val" data-i18n="stat2_val">50 %</span>
+      <div class="stat-lbl" data-i18n="stat2_lbl">Réduction max (volume)</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val" data-i18n="stat3_val">2 ans</span>
+      <div class="stat-lbl" data-i18n="stat3_lbl">Projection commandes</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val" data-i18n="stat4_val">100 %</span>
+      <div class="stat-lbl" data-i18n="stat4_lbl">Cloud scalable</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section>
+    <h2 data-i18n="features_title">Fonctionnalités principales</h2>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-badge" data-i18n="feat1_badge">Catalogue</div>
+        <h3 data-i18n="feat1_title">Multi-fournisseurs</h3>
+        <p data-i18n="feat1_desc">Produits Decathlon, Fnac, Darty et Carrefour réunis dans un seul catalogue filtrable.</p>
+        <div class="mt-auto"><a class="btn-outline" href="produits.html" data-i18n="btn_see">Voir →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-badge" data-i18n="feat2_badge">Cloud</div>
+        <h3 data-i18n="feat2_title">Infrastructure scalable</h3>
+        <p data-i18n="feat2_desc">Simulation cloud public, privé et hybride selon votre charge et votre croissance.</p>
+        <div class="mt-auto"><a class="btn-outline" href="commandes.html" data-i18n="btn_simulate">Simuler →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-badge" data-i18n="feat3_badge">Services</div>
+        <h3 data-i18n="feat3_title">Paiement & fidélité</h3>
+        <p data-i18n="feat3_desc">Abonnements, facturation, financement et livraison intégrés.</p>
+        <div class="mt-auto"><a class="btn-outline" href="services.html" data-i18n="btn_discover">Découvrir →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-badge" data-i18n="feat4_badge">Analyse</div>
+        <h3 data-i18n="feat4_title">Graphiques marché</h3>
+        <p data-i18n="feat4_desc">Top 10 achats web, physique, par région, saison et problèmes consommateurs.</p>
+        <div class="mt-auto"><a class="btn-outline" href="graphiques.html" data-i18n="btn_explore">Explorer →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIQUE -->
+  <section>
+    <h2 data-i18n="logic_title">Logique commerciale</h2>
+    <div class="section-box">
+      <p data-i18n="logic_p1">À partir de <strong>10 articles</strong>, bénéficiez d'une réduction de <strong>20 %</strong>.</p>
+      <p data-i18n="logic_p2">À partir de <strong>20 articles</strong>, la réduction monte à <strong>50 %</strong> — idéal pour les commandes groupées B2B.</p>
+      <p data-i18n="logic_p3">Des options de paiement fractionné, financement et crédit sont disponibles.</p>
+      <div class="flex gap-12 mt-16">
+        <a class="btn" href="panier.html" data-i18n="btn_cart">Accéder au panier</a>
+        <a class="btn-outline" href="contrats.html" data-i18n="btn_contracts">Gérer les contrats</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>VDMS Consulting</h3>
+      <p data-i18n="footer_desc">Plateforme B2B e-commerce — cloud, multi-fournisseurs, centralisation des achats professionnels.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="contrats.html"><span class="__cf_email__" data-cfemail="690a06071d1b081d1a291f0d041a470f1b">[email&#160;protected]</span></a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+</body>
+</html>

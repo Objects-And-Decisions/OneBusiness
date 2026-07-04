@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qui Sommes-Nous — VDMS Consulting</title>
+  <meta name="description" content="Découvrez VDMS Consulting : nos entreprises clientes, notre équipe, nos contacts et comment organiser un entretien."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html" class="active">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">
+        🛒 <span data-i18n="nav_cart">Panier</span>
+        <span class="compteur-panier">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span data-i18n="topbar_msg">Plateforme B2B e-commerce — Solutions cloud & centralisation des achats</span>
+    <span class="topbar-tag" data-i18n="topbar_tag">Version bêta 2026</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO QSN -->
+  <div class="qsn-hero">
+    <div class="hero-label">À propos · Équipe · Contact</div>
+    <h2>Qui <em>Sommes-Nous</em> ?</h2>
+    <p>VDMS Consulting accompagne les entreprises dans leur transformation digitale B2B. Découvrez nos clients, notre équipe, nos coordonnées et comment planifier un entretien avec nos experts.</p>
+  </div>
+
+  <!-- ANCRES DE NAVIGATION -->
+  <nav class="qsn-anchors" aria-label="Sections">
+    <a href="#entreprise-cliente" class="active-anchor">🏢 Entreprise Cliente</a>
+    <a href="#salarie">👤 Salarié</a>
+    <a href="#contact">📞 Contact</a>
+    <a href="#entretien">📅 Entretien</a>
+  </nav>
+
+  <!-- ── SECTION 1 : ENTREPRISE CLIENTE ─────────────────────── -->
+  <section id="entreprise-cliente">
+    <h2>Entreprise Cliente</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        VDMS Consulting s'adresse aux <strong style="color:var(--navy)">PME, ETI et grands groupes</strong> souhaitant centraliser et optimiser leurs achats professionnels. Notre plateforme B2B e-commerce agrège les catalogues de plusieurs fournisseurs majeurs, offrant des remises négociées et une gestion simplifiée des commandes.
+      </p>
+    </div>
+
+    <!-- Stats clients -->
+    <div class="stat-row" style="margin-bottom:28px;">
+      <div class="stat-card">
+        <span class="stat-val">+200</span>
+        <div class="stat-lbl">Entreprises clientes</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">12</span>
+        <div class="stat-lbl">Secteurs d'activité</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">50 %</span>
+        <div class="stat-lbl">Économies moyennes réalisées</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">98 %</span>
+        <div class="stat-lbl">Taux de satisfaction client</div>
+      </div>
+    </div>
+
+    <!-- Secteurs -->
+    <h3 style="color:var(--navy);margin-bottom:16px;font-size:1rem;">Secteurs que nous accompagnons</h3>
+    <div class="secteur-grid">
+      <div class="secteur-card">
+        <div class="secteur-icon">🏗️</div>
+        <h3>BTP & Industrie</h3>
+        <p>Équipements, matériaux et outillage en commandes groupées.</p>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-icon">🏥</div>
+        <h3>Santé & Médical</h3>
+        <p>Fournitures médicales et consommables pour établissements de soins.</p>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-icon">🎓</div>
+        <h3>Éducation</h3>
+        <p>Matériels pédagogiques et informatiques pour établissements scolaires.</p>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-icon">🛍️</div>
+        <h3>Commerce & Retail</h3>
+        <p>Approvisionnement multi-fournisseurs pour réseaux de distribution.</p>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-icon">💻</div>
+        <h3>Tech & Startups</h3>
+        <p>Matériel informatique et mobilier de bureau pour équipes en croissance.</p>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-icon">🏨</div>
+        <h3>Hôtellerie & Restauration</h3>
+        <p>Équipements et produits d'accueil pour établissements CHR.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2 : SALARIÉ ─────────────────────────────────── -->
+  <section id="salarie">
+    <h2>Salarié</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        Notre équipe est composée d'experts passionnés par le commerce B2B, la technologie cloud et l'optimisation des achats. Chaque membre apporte une expertise complémentaire pour offrir un service de qualité à nos clients.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">👨‍💼</div>
+        <h3>Vahid Mousaei</h3>
+        <span class="role">Dirigeant & Fondateur</span>
+        <p>Vision stratégique, développement commercial et pilotage de la plateforme B2B.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍💻</div>
+        <h3>Responsable Technique</h3>
+        <span class="role">CTO</span>
+        <p>Architecture cloud, développement de la plateforme et intégrations fournisseurs.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👨‍📊</div>
+        <h3>Analyste Commercial</h3>
+        <span class="role">Business Analyst</span>
+        <p>Analyse des données marché, optimisation des catalogues et reporting client.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍🤝‍👩</div>
+        <h3>Chargée de Relation Client</h3>
+        <span class="role">Account Manager</span>
+        <p>Suivi des comptes clients, onboarding et accompagnement au quotidien.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👨‍⚖️</div>
+        <h3>Responsable Juridique</h3>
+        <span class="role">Legal & Contrats</span>
+        <p>Gestion des contrats, conformité réglementaire et négociation fournisseurs.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍🎨</div>
+        <h3>Designer UX/UI</h3>
+        <span class="role">Expérience Utilisateur</span>
+        <p>Conception de l'interface, ergonomie et amélioration continue de la plateforme.</p>
+      </div>
+    </div>
+
+    <!-- Valeurs -->
+    <div class="section-box" style="margin-top:28px;">
+      <h3 style="color:var(--navy);margin-bottom:16px;">Nos valeurs</h3>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-badge">Confiance</div>
+          <h3>Transparence totale</h3>
+          <p>Tarifs clairs, contrats lisibles et reporting régulier sans surprise.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">Innovation</div>
+          <h3>Technologie au service du B2B</h3>
+          <p>Outils modernes, cloud scalable et automatisation pour gagner du temps.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">Proximité</div>
+          <h3>Accompagnement personnalisé</h3>
+          <p>Un interlocuteur dédié pour chaque client, disponible et réactif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3 : CONTACT ─────────────────────────────────── -->
+  <section id="contact">
+    <h2>Contact</h2>
+
+    <div class="contact-grid">
+
+      <!-- Informations de contact -->
+      <div>
+        <p style="margin-bottom:20px;font-size:15px;">Nous sommes disponibles du <strong style="color:var(--navy)">lundi au vendredi, de 9h à 18h</strong>. N'hésitez pas à nous contacter par l'un des canaux ci-dessous ou via le formulaire.</p>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📧</div>
+            <div class="info-text">
+              <span>Email</span>
+              <span>contact@vdms-consulting.fr</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div class="info-text">
+              <span>Téléphone</span>
+              <span>+33 1 23 45 67 89</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div class="info-text">
+              <span>Adresse</span>
+              <span>12 Rue de l'Innovation, 75001 Paris</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🕒</div>
+            <div class="info-text">
+              <span>Horaires</span>
+              <span>Lun – Ven : 9h00 – 18h00</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">💬</div>
+            <div class="info-text">
+              <span>Chat en ligne</span>
+              <span>Disponible via le chatbot intégré</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulaire de contact -->
+      <div>
+        <div class="section-box" style="padding:28px;margin:0;">
+          <h3 style="color:var(--navy);margin-bottom:20px;">Envoyer un message</h3>
+          <form id="contact-form" onsubmit="envoyerContact(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="c-prenom">Prénom</label>
+                <input type="text" id="c-prenom" placeholder="Marie" required/>
+              </div>
+              <div class="form-group">
+                <label for="c-nom">Nom</label>
+                <input type="text" id="c-nom" placeholder="Dupont" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email professionnel</label>
+              <input type="email" id="c-email" placeholder="marie.dupont@entreprise.fr" required/>
+            </div>
+            <div class="form-group">
+              <label for="c-societe">Société</label>
+              <input type="text" id="c-societe" placeholder="Nom de votre entreprise"/>
+            </div>
+            <div class="form-group">
+              <label for="c-sujet">Sujet</label>
+              <select id="c-sujet">
+                <option value="">-- Choisir un sujet --</option>
+                <option value="info">Demande d'information</option>
+                <option value="demo">Demande de démo</option>
+                <option value="tarif">Tarification &amp; contrats</option>
+                <option value="support">Support technique</option>
+                <option value="partenariat">Partenariat</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="c-message">Message</label>
+              <textarea id="c-message" placeholder="Décrivez votre besoin..." rows="4" required></textarea>
+            </div>
+            <div id="contact-alert" style="display:none;" class="alert alert-success">✅ Votre message a bien été envoyé. Nous vous répondrons sous 24h.</div>
+            <div class="form-actions">
+              <button type="submit" class="btn">Envoyer le message →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4 : ENTRETIEN ───────────────────────────────── -->
+  <section id="entretien">
+    <h2>Entretien</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        Planifiez un entretien avec l'un de nos experts pour analyser vos besoins, vous présenter notre plateforme et construire une offre sur mesure. L'entretien dure environ <strong style="color:var(--navy)">45 minutes</strong> et peut se dérouler en visioconférence ou en présentiel à Paris.
+      </p>
+    </div>
+
+    <!-- Étapes -->
+    <h3 style="color:var(--navy);margin-bottom:16px;font-size:1rem;">Comment se déroule un entretien ?</h3>
+    <div class="steps-list" style="margin-bottom:32px;">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Prise de contact initiale</h3>
+          <p>Remplissez le formulaire de demande d'entretien ci-dessous. Notre équipe vous confirme un créneau sous 24h ouvrées.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Qualification de votre besoin</h3>
+          <p>Un questionnaire préparatoire vous est envoyé pour cerner vos volumes d'achats, secteur d'activité et objectifs.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Démonstration de la plateforme</h3>
+          <p>Présentation en live de l'interface, du catalogue multi-fournisseurs, des remises et des outils de pilotage.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Proposition commerciale personnalisée</h3>
+          <p>Sous 48h, vous recevez une offre tarifaire adaptée à votre structure, vos volumes et vos fournisseurs cibles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire d'entretien -->
+    <div class="section-box" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:20px;">📅 Demander un entretien</h3>
+      <form id="entretien-form" onsubmit="envoyerEntretien(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="e-prenom">Prénom</label>
+            <input type="text" id="e-prenom" placeholder="Jean" required/>
+          </div>
+          <div class="form-group">
+            <label for="e-nom">Nom</label>
+            <input type="text" id="e-nom" placeholder="Martin" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="e-email">Email professionnel</label>
+            <input type="email" id="e-email" placeholder="jean.martin@societe.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="e-tel">Téléphone</label>
+            <input type="tel" id="e-tel" placeholder="+33 6 00 00 00 00"/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="e-societe">Société</label>
+            <input type="text" id="e-societe" placeholder="Nom de votre entreprise" required/>
+          </div>
+          <div class="form-group">
+            <label for="e-taille">Taille de l'entreprise</label>
+            <select id="e-taille">
+              <option value="">-- Sélectionner --</option>
+              <option value="tpe">TPE (1 – 9 salariés)</option>
+              <option value="pme">PME (10 – 249 salariés)</option>
+              <option value="eti">ETI (250 – 4 999 salariés)</option>
+              <option value="ge">Grande entreprise (5 000+)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="e-date">Date souhaitée</label>
+            <input type="date" id="e-date" min="" required/>
+          </div>
+          <div class="form-group">
+            <label for="e-format">Format de l'entretien</label>
+            <select id="e-format">
+              <option value="visio">Visioconférence (Teams / Zoom)</option>
+              <option value="tel">Appel téléphonique</option>
+              <option value="presentiel">Présentiel — Paris</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="e-objectif">Objectif principal de l'entretien</label>
+          <textarea id="e-objectif" rows="3" placeholder="Ex : Réduire nos coûts d'achats, centraliser nos commandes multi-fournisseurs, tester la plateforme..."></textarea>
+        </div>
+        <div id="entretien-alert" style="display:none;" class="alert alert-success">✅ Votre demande d'entretien a bien été enregistrée. Nous vous confirmons un créneau dans les 24h.</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Confirmer la demande →</button>
+          <span class="muted text-sm">Réponse garantie sous 24h ouvrées</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>VDMS Consulting</h3>
+      <p data-i18n="footer_desc">Plateforme B2B e-commerce — cloud, multi-fournisseurs, centralisation des achats professionnels.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="qui-sommes-nous.html#contact">contact@vdms-consulting.fr</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+<script>
+  // Date minimum = aujourd'hui pour le calendrier
+  document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('e-date');
+    if (dateInput) dateInput.min = today;
+  });
+
+  // Formulaire de contact
+  function envoyerContact(e) {
+    e.preventDefault();
+    const alert = document.getElementById('contact-alert');
+    alert.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { alert.style.display = 'none'; }, 5000);
+  }
+
+  // Formulaire d'entretien
+  function envoyerEntretien(e) {
+    e.preventDefault();
+    const alert = document.getElementById('entretien-alert');
+    alert.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { alert.style.display = 'none'; }, 5000);
+  }
+
+  // Highlight ancre active au scroll
+  const anchors = document.querySelectorAll('.qsn-anchors a');
+  const sections = ['entreprise-cliente', 'salarie', 'contact', 'entretien'];
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 120) current = id;
+    });
+    anchors.forEach(a => {
+      a.classList.remove('active-anchor');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active-anchor');
+    });
+  });
+</script>
+</body>
+</html>

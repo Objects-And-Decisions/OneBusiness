@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Événement — VDMS Consulting</title>
+  <meta name="description" content="Événements VDMS Consulting : recrutement, offres d'emploi et candidatures pour rejoindre notre équipe B2B."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <div class="logo-icon">V</div>
+      <h1>VDMS <em>Consulting</em></h1>
+    </a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="contrats.html" data-i18n="nav_contracts">Contrats</a>
+      <a href="fournisseurs.html" data-i18n="nav_suppliers">Fournisseurs</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+      <a href="qui-sommes-nous.html">Qui Sommes-Nous</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="evenement.html" class="active">Événement</a>
+    </nav>
+    <div class="header-right">
+      <select class="lang-select" id="lang-select" title="Language">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="de">🇩🇪</option>
+        <option value="zh">🇨🇳</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+      <a class="panier-link" href="panier.html">
+        🛒 <span data-i18n="nav_cart">Panier</span>
+        <span class="compteur-panier">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span data-i18n="topbar_msg">Plateforme B2B e-commerce — Solutions cloud & centralisation des achats</span>
+    <span class="topbar-tag" data-i18n="topbar_tag">Version bêta 2026</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO ÉVÉNEMENT -->
+  <div class="evt-hero">
+    <div class="hero-label">Événement · Recrutement · Carrières</div>
+    <h2>Rejoignez <em>l'aventure</em> VDMS</h2>
+    <p>VDMS Consulting est en pleine croissance. Nous cherchons des talents passionnés par le B2B, la technologie et l'innovation pour renforcer notre équipe et construire ensemble la plateforme de demain.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#offres">Voir les offres</a>
+      <a class="btn-ghost" href="#candidature-spontanee">Candidature spontanée</a>
+    </div>
+  </div>
+
+  <!-- CHIFFRES RH -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-val">8</span>
+      <div class="stat-lbl">Postes ouverts</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">3</span>
+      <div class="stat-lbl">Départements recruteurs</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">100 %</span>
+      <div class="stat-lbl">Télétravail possible</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">< 3 sem.</span>
+      <div class="stat-lbl">Délai de réponse moyen</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION RECRUTEMENT ─────────────────────────────────── -->
+  <section id="recrutement">
+    <h2>Recrutement</h2>
+
+    <div class="section-box" style="margin-bottom:28px;">
+      <p style="margin:0;font-size:15px;line-height:1.8;">
+        Chez VDMS Consulting, nous croyons que les meilleurs produits sont construits par des équipes diversifiées et engagées. Nous recrutons des profils <strong style="color:var(--navy)">juniors, confirmés et experts</strong> dans les domaines de la tech, du commerce B2B et du conseil. Tous nos postes sont ouverts aux candidatures en CDI, CDD ou alternance.
+      </p>
+    </div>
+
+    <!-- Valeurs RH -->
+    <div class="evt-valeurs-grid" style="margin-bottom:36px;">
+      <div class="evt-valeur-card">
+        <div class="evt-valeur-icon">🚀</div>
+        <h3>Ambition</h3>
+        <p>Des projets à fort impact, une croissance rapide et des défis stimulants au quotidien.</p>
+      </div>
+      <div class="evt-valeur-card">
+        <div class="evt-valeur-icon">🤝</div>
+        <h3>Bienveillance</h3>
+        <p>Une culture d'entreprise fondée sur la confiance, l'écoute et la montée en compétences.</p>
+      </div>
+      <div class="evt-valeur-card">
+        <div class="evt-valeur-icon">🌍</div>
+        <h3>Flexibilité</h3>
+        <p>Télétravail hybride, horaires aménageables et équipes distribuées à travers la France.</p>
+      </div>
+      <div class="evt-valeur-card">
+        <div class="evt-valeur-icon">📈</div>
+        <h3>Évolution</h3>
+        <p>Plan de carrière personnalisé, formations continues et accès aux dernières technologies.</p>
+      </div>
+    </div>
+
+    <!-- ── OFFRES D'EMPLOI ─────────────────────────────────────── -->
+    <h3 id="offres" style="color:var(--navy);margin-bottom:16px;font-size:1rem;">Offres d'emploi actuelles</h3>
+
+    <div class="evt-offres-list" style="margin-bottom:36px;">
+
+      <div class="evt-offre-card">
+        <div class="evt-offre-header">
+          <div>
+            <h3>Développeur Full-Stack B2B</h3>
+            <p class="evt-offre-meta">📍 Paris (hybride) &nbsp;·&nbsp; 💼 CDI &nbsp;·&nbsp; 🕒 Temps plein</p>
+          </div>
+          <div class="evt-offre-badges">
+            <span class="badge badge-green">Tech</span>
+            <span class="badge badge-blue">Nouveau</span>
+          </div>
+        </div>
+        <p class="evt-offre-desc">Vous développez et maintenez les fonctionnalités de la plateforme B2B (React, Node.js, API REST). Vous participez aux choix d'architecture et à l'amélioration continue de l'expérience utilisateur.</p>
+        <div class="evt-offre-footer">
+          <div class="evt-offre-tags">
+            <span class="evt-tag">React</span>
+            <span class="evt-tag">Node.js</span>
+            <span class="evt-tag">PostgreSQL</span>
+            <span class="evt-tag">AWS</span>
+          </div>
+          <button class="btn-outline" onclick="ouvrirPostuler('Développeur Full-Stack B2B')">Postuler →</button>
+        </div>
+      </div>
+
+      <div class="evt-offre-card">
+        <div class="evt-offre-header">
+          <div>
+            <h3>Business Developer B2B</h3>
+            <p class="evt-offre-meta">📍 Paris / Remote &nbsp;·&nbsp; 💼 CDI &nbsp;·&nbsp; 🕒 Temps plein</p>
+          </div>
+          <div class="evt-offre-badges">
+            <span class="badge badge-green">Commercial</span>
+          </div>
+        </div>
+        <p class="evt-offre-desc">Vous prospectez de nouveaux clients B2B (PME et ETI), gérez votre pipeline commercial et concluez des contrats. Vous êtes le moteur de la croissance de VDMS Consulting.</p>
+        <div class="evt-offre-footer">
+          <div class="evt-offre-tags">
+            <span class="evt-tag">CRM</span>
+            <span class="evt-tag">Prospection</span>
+            <span class="evt-tag">Négociation</span>
+            <span class="evt-tag">B2B</span>
+          </div>
+          <button class="btn-outline" onclick="ouvrirPostuler('Business Developer B2B')">Postuler →</button>
+        </div>
+      </div>
+
+      <div class="evt-offre-card">
+        <div class="evt-offre-header">
+          <div>
+            <h3>Chef de Projet Data & Analytics</h3>
+            <p class="evt-offre-meta">📍 Paris (hybride) &nbsp;·&nbsp; 💼 CDI &nbsp;·&nbsp; 🕒 Temps plein</p>
+          </div>
+          <div class="evt-offre-badges">
+            <span class="badge badge-green">Data</span>
+            <span class="evt-offre-badges"><span class="badge badge-yellow">Urgent</span></span>
+          </div>
+        </div>
+        <p class="evt-offre-desc">Vous pilotez les projets d'analyse de données clients et fournisseurs, construisez des dashboards décisionnels et proposez des recommandations stratégiques à la direction.</p>
+        <div class="evt-offre-footer">
+          <div class="evt-offre-tags">
+            <span class="evt-tag">Python</span>
+            <span class="evt-tag">SQL</span>
+            <span class="evt-tag">Power BI</span>
+            <span class="evt-tag">Chart.js</span>
+          </div>
+          <button class="btn-outline" onclick="ouvrirPostuler('Chef de Projet Data & Analytics')">Postuler →</button>
+        </div>
+      </div>
+
+      <div class="evt-offre-card">
+        <div class="evt-offre-header">
+          <div>
+            <h3>Chargé(e) de Communication & Réseaux Sociaux</h3>
+            <p class="evt-offre-meta">📍 Remote &nbsp;·&nbsp; 💼 CDD 6 mois &nbsp;·&nbsp; 🕒 Temps plein</p>
+          </div>
+          <div class="evt-offre-badges">
+            <span class="badge badge-green">Marketing</span>
+          </div>
+        </div>
+        <p class="evt-offre-desc">Vous gérez la présence digitale de VDMS Consulting sur LinkedIn, Instagram et X. Vous créez du contenu engageant, animez la communauté et mesurez les performances.</p>
+        <div class="evt-offre-footer">
+          <div class="evt-offre-tags">
+            <span class="evt-tag">LinkedIn</span>
+            <span class="evt-tag">Canva</span>
+            <span class="evt-tag">Community</span>
+            <span class="evt-tag">Analytics</span>
+          </div>
+          <button class="btn-outline" onclick="ouvrirPostuler('Chargé(e) de Communication & Réseaux Sociaux')">Postuler →</button>
+        </div>
+      </div>
+
+      <div class="evt-offre-card">
+        <div class="evt-offre-header">
+          <div>
+            <h3>Alternant(e) — Développement Web</h3>
+            <p class="evt-offre-meta">📍 Paris &nbsp;·&nbsp; 🎓 Alternance 12 mois &nbsp;·&nbsp; 🕒 Temps plein</p>
+          </div>
+          <div class="evt-offre-badges">
+            <span class="badge badge-blue">Alternance</span>
+          </div>
+        </div>
+        <p class="evt-offre-desc">Intégrez l'équipe tech et participez au développement de nouvelles fonctionnalités. Idéal pour un(e) étudiant(e) en école d'ingénieurs ou Master informatique.</p>
+        <div class="evt-offre-footer">
+          <div class="evt-offre-tags">
+            <span class="evt-tag">HTML/CSS</span>
+            <span class="evt-tag">JavaScript</span>
+            <span class="evt-tag">Git</span>
+          </div>
+          <button class="btn-outline" onclick="ouvrirPostuler('Alternant(e) — Développement Web')">Postuler →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── MODALE DE CANDIDATURE ───────────────────────────────── -->
+    <div id="modale-postuler" class="evt-modale-overlay" style="display:none;" onclick="fermerModale(event)">
+      <div class="evt-modale">
+        <div class="evt-modale-header">
+          <h3>Postuler — <em id="modale-poste-titre"></em></h3>
+          <button class="evt-modale-close" onclick="fermerModale()">&times;</button>
+        </div>
+        <form id="form-postuler" onsubmit="envoyerCandidature(event)">
+          <input type="hidden" id="p-poste"/>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="p-prenom">Prénom</label>
+              <input type="text" id="p-prenom" placeholder="Alex" required/>
+            </div>
+            <div class="form-group">
+              <label for="p-nom">Nom</label>
+              <input type="text" id="p-nom" placeholder="Durand" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="p-email">Email</label>
+            <input type="email" id="p-email" placeholder="alex.durand@email.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="p-tel">Téléphone</label>
+            <input type="tel" id="p-tel" placeholder="+33 6 00 00 00 00"/>
+          </div>
+          <div class="form-group">
+            <label for="p-linkedin">Profil LinkedIn</label>
+            <input type="url" id="p-linkedin" placeholder="https://linkedin.com/in/votre-profil"/>
+          </div>
+          <div class="form-group">
+            <label for="p-motivation">Lettre de motivation</label>
+            <textarea id="p-motivation" rows="4" placeholder="Pourquoi souhaitez-vous rejoindre VDMS Consulting ?..." required></textarea>
+          </div>
+          <div id="alert-postuler" class="alert alert-success" style="display:none;">✅ Candidature envoyée ! Nous vous répondrons sous 3 semaines.</div>
+          <div class="form-actions">
+            <button type="submit" class="btn">Envoyer ma candidature →</button>
+            <button type="button" class="btn-outline" onclick="fermerModale()">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ── CANDIDATURE SPONTANÉE ───────────────────────────────── -->
+    <div class="section-box" id="candidature-spontanee" style="margin:0;">
+      <h3 style="color:var(--navy);margin-bottom:6px;">💌 Candidature spontanée</h3>
+      <p style="margin-bottom:20px;">Vous ne trouvez pas le poste idéal ? Envoyez-nous votre candidature, nous gardons tous les profils en tête pour nos prochains recrutements.</p>
+      <form id="form-spontane" onsubmit="envoyerSpontane(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="s-prenom">Prénom</label>
+            <input type="text" id="s-prenom" placeholder="Camille" required/>
+          </div>
+          <div class="form-group">
+            <label for="s-nom">Nom</label>
+            <input type="text" id="s-nom" placeholder="Leblanc" required/>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="s-email">Email</label>
+            <input type="email" id="s-email" placeholder="camille.leblanc@email.fr" required/>
+          </div>
+          <div class="form-group">
+            <label for="s-domaine">Domaine d'expertise</label>
+            <select id="s-domaine">
+              <option value="">-- Choisir --</option>
+              <option value="tech">Développement & Tech</option>
+              <option value="commercial">Commercial & Business Dev</option>
+              <option value="data">Data & Analytics</option>
+              <option value="marketing">Marketing & Communication</option>
+              <option value="juridique">Juridique & Conformité</option>
+              <option value="ops">Opérations & Logistique</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="s-message">Présentez-vous en quelques mots</label>
+          <textarea id="s-message" rows="3" placeholder="Votre parcours, vos compétences clés et ce que vous aimeriez apporter à VDMS Consulting..." required></textarea>
+        </div>
+        <div id="alert-spontane" class="alert alert-success" style="display:none;">✅ Votre candidature spontanée a bien été reçue. Merci pour l'intérêt que vous portez à VDMS Consulting !</div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Envoyer ma candidature →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>VDMS Consulting</h3>
+      <p data-i18n="footer_desc">Plateforme B2B e-commerce — cloud, multi-fournisseurs, centralisation des achats professionnels.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navigation</h4>
+      <a href="produits.html" data-i18n="nav_products">Produits</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="commandes.html" data-i18n="nav_orders">Commandes</a>
+      <a href="graphiques.html" data-i18n="nav_charts">Graphiques</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="qui-sommes-nous.html#contact">contact@vdms-consulting.fr</a>
+      <a href="evenement.html">Événement & Recrutement</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer_legal"></span>
+    <a href="mentions-legales.html" class="footer-legal-link">Mentions légales &amp; RGPD</a>
+    <span>Dirigeant : <em>Vahid Mousaei</em></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="navigation.js"></script>
+<script>
+  // Ouvrir la modale de candidature
+  function ouvrirPostuler(poste) {
+    document.getElementById('modale-poste-titre').textContent = poste;
+    document.getElementById('p-poste').value = poste;
+    document.getElementById('alert-postuler').style.display = 'none';
+    document.getElementById('form-postuler').reset();
+    document.getElementById('p-poste').value = poste;
+    document.getElementById('modale-postuler').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Fermer la modale
+  function fermerModale(e) {
+    if (!e || e.target === document.getElementById('modale-postuler') || !e.target.closest) {
+      document.getElementById('modale-postuler').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Envoyer candidature via modale
+  function envoyerCandidature(e) {
+    e.preventDefault();
+    const alert = document.getElementById('alert-postuler');
+    alert.style.display = 'block';
+    setTimeout(() => {
+      alert.style.display = 'none';
+      document.getElementById('modale-postuler').style.display = 'none';
+      document.body.style.overflow = '';
+    }, 3000);
+  }
+
+  // Candidature spontanée
+  function envoyerSpontane(e) {
+    e.preventDefault();
+    const alert = document.getElementById('alert-spontane');
+    alert.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { alert.style.display = 'none'; }, 5000);
+  }
+</script>
+</body>
+</html>
