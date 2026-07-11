@@ -484,6 +484,20 @@
   // Soumission formulaires
   function envoyerRdv(e, type) {
     e.preventDefault();
+    
+    const nom = document.getElementById("j-nom").value;
+    const email = document.getElementById("j-email").value;
+    const message = document.getElementById("j-specialite").value + " Niveau Urgence " + document.getElementById("j-specialite").value;
+
+    const sujet = encodeURIComponent("Nouveau message");
+    const corps = encodeURIComponent(
+        "Nom : " + nom + "\n" +
+        "Email : " + email + "\n\n" +
+        message
+    );
+    
+    window.location.href =
+        `mailto:contact@monsite.fr?subject=${sujet}&body=${corps}`;
     const alert = document.getElementById('alert-' + type);
     if (alert) {
       alert.style.display = 'block';
